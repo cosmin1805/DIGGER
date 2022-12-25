@@ -12,8 +12,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.data.DataHandler;
 
-import static java.lang.Math.abs;
-import static ro.iacobai.digger.commands.subcommands.StatusCommand.location_send;
+
+
 
 
 public class DigPlace  {
@@ -43,29 +43,30 @@ public class DigPlace  {
                 Location current_pos = DataHandler.get_position(namespacedKey_PosCurrent,data);
                 Block block = current_pos.getBlock();
                 Material material_b = block.getBlockData().getMaterial();
-                if (material_b.equals(Material.BEDROCK)){
-                    return;
-                }
-                if(use_chest==1) {
-                    ItemStack item = new ItemStack(block.getBlockData().getMaterial());
-                    Material material = chest_pos.getBlock().getBlockData().getMaterial();
-                    if(material.equals(Material.CHEST)){
-                        System.out.println(current_pos.getBlock().getState());
-                        Chest chest = (Chest) current_pos.getBlock().getState();
-                        chest.getInventory().addItem(item);
+                if (!material_b.equals(Material.BEDROCK)){
+                    if(use_chest==1) {
+                        ItemStack item = new ItemStack(block.getBlockData().getMaterial());
+                        Material material = chest_pos.getBlock().getBlockData().getMaterial();
+                        if(material.equals(Material.CHEST)){
+                            Chest chest = (Chest) chest_pos.getBlock().getState();
+                            chest.getInventory().addItem(item);
+                        }
                     }
+                    block.setType(Material.AIR);
                 }
                 if(current_pos.getX()==pos2.getX() && current_pos.getY()==pos2.getY() && current_pos.getZ()==pos2.getZ()) {
+                    DataHandler.change_bool(namespacedKey_Task_Running,data,player,null);
                     player.sendMessage("Digger has finished!");
+                    this.cancel();
                 }
                 else if(current_pos.getX()==pos2.getX()  && current_pos.getZ()==pos2.getZ()){
                     current_pos.setX(pos1.getX());
-                    int add = 1;
-                    if(pos2.getY()<0){
-                        add=-add;
+                    if(pos1.getY()>pos2.getY()){
+                        current_pos.set(pos1.getX(),current_pos.getY()-1,pos1.getZ());
                     }
-                    current_pos.setY(current_pos.getY()+add);
-                    current_pos.setZ(pos1.getZ());
+                    else{
+                        current_pos.set(pos1.getX(),current_pos.getY()+1,pos1.getZ());
+                    }
                 }
                 else if(current_pos.getZ()==pos2.getZ()){
                     int add = 1;
@@ -77,14 +78,12 @@ public class DigPlace  {
                 }
                 else {
                     int add = 1;
-                    if(pos2.getX()<0){
+                    if(pos2.getZ()<0){
                         add=-add;
                     }
                     current_pos.setZ(current_pos.getZ()+add);
                 }
                 DataHandler.save_position(namespacedKey_PosCurrent,data,current_pos);
-                System.out.println(current_pos);
-                location_send(namespacedKey_PosCurrent,data,player,"Current pos is: ");;
             }
         }.runTaskTimer(plugin, 1,12 ).getTaskId();
         return ID;

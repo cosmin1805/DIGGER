@@ -16,7 +16,9 @@ public class StatusCommand extends SubCommand {
     NamespacedKey namespacedKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
     NamespacedKey namespacedKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
     NamespacedKey namespacedKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
+    NamespacedKey namespacedKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"current_pos");
     NamespacedKey namespacedKey_Price = new NamespacedKey(DIGGER.getPlugin(),"task_price");
+    NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
     @Override
     public String getName() {
         return "status";
@@ -42,7 +44,8 @@ public class StatusCommand extends SubCommand {
             location_send(namespacedKey_Pos1,data,player,"Pos1 is: ");
             location_send(namespacedKey_Pos2,data,player,"Pos2 is: ");
             location_send(namespacedKey_PosChest,data,player,"Chest pos is: ");
-            player.sendMessage("Running digger: ");
+            on_off_send(namespacedKey_Task_Running,data,player,"Digger running: ");
+            location_send(namespacedKey_PosCurrent,data,player,"Current pos is: ");;
             player.sendMessage("Digger price: "+ChatColor.GREEN+DataHandler.get_price(namespacedKey_Price,data)+"$");
             player.sendMessage(ChatColor.AQUA+"---------------------");
     }

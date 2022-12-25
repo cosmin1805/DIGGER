@@ -45,8 +45,8 @@ public class CommandManager implements CommandExecutor {
                     }
                     else {
                         p.sendMessage(ChatColor.RED+"Can't run this command! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
-                        return true;
                     }
+                    return true;
                 }
                 for (int i = 0; i < getSubcommands().size(); i++){
                     if(args[0].equalsIgnoreCase(getSubcommands().get(i).getName())){
