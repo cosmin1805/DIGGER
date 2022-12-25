@@ -4,6 +4,7 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -18,6 +19,8 @@ public class ConfirmCommand extends SubCommand {
     NamespacedKey namespacedKey_Price = new NamespacedKey(DIGGER.getPlugin(),"task_price");
     NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
     NamespacedKey namespacedKey_Task_Id= new NamespacedKey(DIGGER.getPlugin(),"task_id");
+    NamespacedKey namespacedKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
+    NamespacedKey namespacedKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"current_pos");
     @Override
     public String getName() {
         return "confirm";
@@ -57,6 +60,10 @@ public class ConfirmCommand extends SubCommand {
                     player.sendMessage("Taken "+ChatColor.GREEN+ price+"$");
                     player.sendMessage(ChatColor.GREEN+"DIGGER HAS STARTED!");
                     DigPlace digPlace = new DigPlace();
+                    DataHandler.change_bool(namespacedKey_Task_Running,data,player,null);
+
+                    Location pos1 = DataHandler.get_position(namespacedKey_Pos1,data);
+                    DataHandler.save_position(namespacedKey_PosCurrent,data,pos1);
                     digPlace.run_t(player);
                 }
             }

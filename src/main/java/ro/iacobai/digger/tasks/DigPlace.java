@@ -30,10 +30,7 @@ public class DigPlace  {
 
     public void run_t(Player player) {
         PersistentDataContainer data = player.getPersistentDataContainer();
-        DataHandler.change_bool(namespacedKey_Task_Running,data,player,null);
-
         Location pos1 = DataHandler.get_position(namespacedKey_Pos1,data);
-        DataHandler.save_position(namespacedKey_PosCurrent,data,pos1);
         Location pos2 = DataHandler.get_position(namespacedKey_Pos2,data);
 
         int use_chest = DataHandler.get_bool(namespacedKey_Use_Chest,data);

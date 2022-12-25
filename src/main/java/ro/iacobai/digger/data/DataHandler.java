@@ -10,6 +10,9 @@ public class DataHandler {
     public static void change_bool(NamespacedKey namespacedKey, PersistentDataContainer data, Player player, String message) {
         if (!data.has(namespacedKey, PersistentDataType.INTEGER)) {
             data.set(namespacedKey, PersistentDataType.INTEGER, 0);
+            if(message != null)
+                player.sendMessage(ChatColor.RED + message + "OFF");
+            return;
         }
         int data_select = data.get(namespacedKey, PersistentDataType.INTEGER);
         if (data_select == 1) {
