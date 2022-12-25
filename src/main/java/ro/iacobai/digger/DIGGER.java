@@ -8,8 +8,8 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import ro.iacobai.digger.commands.CommandManager;
 import ro.iacobai.digger.items.ItemManager;
-
-
+import ro.iacobai.digger.player.OnJoin;
+import ro.iacobai.digger.player.OnLeave;
 
 
 public final class DIGGER extends JavaPlugin implements Listener {
@@ -29,6 +29,8 @@ public final class DIGGER extends JavaPlugin implements Listener {
             plugin = this;
             getCommand("digger").setExecutor(new CommandManager());
             getServer().getPluginManager().registerEvents(new ItemManager(),this);
+            getServer().getPluginManager().registerEvents(new OnJoin(),this);
+            getServer().getPluginManager().registerEvents(new OnLeave(),this);
     }
 
     @Override
