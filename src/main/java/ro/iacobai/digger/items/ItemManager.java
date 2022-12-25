@@ -22,16 +22,12 @@ public class ItemManager implements Listener {
     NamespacedKey namespacedKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
     NamespacedKey namespacedKey_Chest = new NamespacedKey(DIGGER.getPlugin(),"chest_select");
     NamespacedKey getNamespacedKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
+    NamespacedKey namespacedKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
     private HashMap<UUID, Long> cooldown=new HashMap<>();
     @EventHandler
     public void onInteract(PlayerInteractEvent event){
         Action action = event.getAction();
         Player player = event.getPlayer();
-        World world = Bukkit.getWorld("world");
-        if(!player.getWorld().equals(world)){
-            player.sendMessage(ChatColor.RED + "The digger only works in the overworld!");
-            return;
-        }
         if(action.equals(Action.LEFT_CLICK_BLOCK)||action.equals(Action.RIGHT_CLICK_BLOCK)){
             if(player.getInventory().getItemInMainHand().equals(new ItemStack(Material.STICK))==false)
             {
@@ -48,7 +44,17 @@ public class ItemManager implements Listener {
             } else {
                 this.cooldown.put(player.getUniqueId(), System.currentTimeMillis());
             }
+            World world = Bukkit.getWorld("world");
+            if(!player.getWorld().equals(world)){
+                player.sendMessage(ChatColor.RED + "The digger only works in the overworld!");
+                return;
+            }
             PersistentDataContainer data = player.getPersistentDataContainer();
+            int confirm = DataHandler.get_bool(namespacedKey_Confirm,data);
+            if(confirm == 1){
+                player.sendMessage(ChatColor.RED+"Can't do this action! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
+                return;
+            }
             Block block = event.getClickedBlock();
             Location blockLocation = block.getLocation();
             int chest = DataHandler.get_bool(namespacedKey_Chest,data);
