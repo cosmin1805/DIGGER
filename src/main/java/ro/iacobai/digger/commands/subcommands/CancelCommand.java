@@ -18,7 +18,7 @@ public class CancelCommand extends SubCommand {
 
     @Override
     public String getDescription() {
-        return "Cancel something!";
+        return "Cancel some event";
     }
 
     @Override

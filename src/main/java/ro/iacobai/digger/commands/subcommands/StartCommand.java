@@ -28,7 +28,7 @@ public class StartCommand extends SubCommand {
 
     @Override
     public String getDescription() {
-        return "Starts the digger, but need confirmation!";
+        return "Starts the digger, but needs confirmation!";
     }
 
     @Override

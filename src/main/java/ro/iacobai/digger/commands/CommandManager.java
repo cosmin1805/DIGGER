@@ -34,7 +34,11 @@ public class CommandManager implements CommandExecutor {
             Player p = (Player) sender;
             PersistentDataContainer data = p.getPersistentDataContainer();
             if(args.length == 0){
-
+                p.sendMessage(ChatColor.AQUA+"---------------------");
+                for (int i = 0; i < getSubcommands().size(); i++){
+                    p.sendMessage(getSubcommands().get(i).getSyntax()+" - "+getSubcommands().get(i).getDescription());
+                }
+                p.sendMessage(ChatColor.AQUA+"---------------------");
             } else if (args.length > 0) {
                 int confirm = DataHandler.get_bool(namespacedKey_Confirm,data);
                 int task_running = DataHandler.get_bool(namespacedKey_Task_Running,data);
