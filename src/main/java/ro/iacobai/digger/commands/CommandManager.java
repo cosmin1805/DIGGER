@@ -11,6 +11,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import ro.iacobai.digger.commands.subcommands.ChestCommand;
 import ro.iacobai.digger.commands.subcommands.SelectCommand;
+import ro.iacobai.digger.commands.subcommands.StartCommand;
 import ro.iacobai.digger.commands.subcommands.StatusCommand;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new SelectCommand());
         subcommands.add(new ChestCommand());
         subcommands.add(new StatusCommand());
+        subcommands.add(new StartCommand());
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
