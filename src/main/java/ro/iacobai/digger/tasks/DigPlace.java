@@ -69,23 +69,25 @@ public class DigPlace  {
                     }
                 }
                 else if(current_pos.getZ()==pos2.getZ()){
-                    int add = 1;
-                    if(pos2.getX()<0){
-                        add=-add;
+
+                    if(pos1.getX()>pos2.getX()){
+                        current_pos.set(current_pos.getX()-1,current_pos.getY(),pos1.getZ());
                     }
-                    current_pos.setX(current_pos.getX()+add);
-                    current_pos.setZ(pos1.getZ());
+                    else{
+                        current_pos.set(current_pos.getX()+1,current_pos.getY(),pos1.getZ());
+                    }
                 }
                 else {
-                    int add = 1;
-                    if(pos2.getZ()<0){
-                        add=-add;
+                    if(pos1.getZ()>pos2.getZ()){
+                        current_pos.setZ(current_pos.getZ()-1);
                     }
-                    current_pos.setZ(current_pos.getZ()+add);
+                    else{
+                        current_pos.setZ(current_pos.getZ()+1);
+                    }
                 }
                 DataHandler.save_position(namespacedKey_PosCurrent,data,current_pos);
             }
-        }.runTaskTimer(plugin, 1,12 ).getTaskId();
+        }.runTaskTimer(plugin, 1,12 *20).getTaskId();
         return ID;
     }
 

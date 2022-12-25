@@ -23,6 +23,7 @@ public class ItemManager implements Listener {
     NamespacedKey namespacedKey_Chest = new NamespacedKey(DIGGER.getPlugin(),"chest_select");
     NamespacedKey getNamespacedKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
     NamespacedKey namespacedKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
+    NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
     private HashMap<UUID, Long> cooldown=new HashMap<>();
     @EventHandler
     public void onInteract(PlayerInteractEvent event){
@@ -51,6 +52,11 @@ public class ItemManager implements Listener {
             }
             PersistentDataContainer data = player.getPersistentDataContainer();
             int confirm = DataHandler.get_bool(namespacedKey_Confirm,data);
+            int task_running = DataHandler.get_bool(namespacedKey_Task_Running,data);
+            if(task_running==1){
+                player.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
+                return;
+            }
             if(confirm == 1){
                 player.sendMessage(ChatColor.RED+"Can't do this action! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
                 return;
