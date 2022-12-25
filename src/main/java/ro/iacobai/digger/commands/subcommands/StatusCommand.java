@@ -5,9 +5,12 @@ import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.commands.SubCommand;
 import ro.iacobai.digger.data.DataHandler;
+
+import static java.lang.Math.abs;
 
 public class StatusCommand extends SubCommand {
     NamespacedKey namespacedKey_Pos = new NamespacedKey(DIGGER.getPlugin(),"pos_select");
@@ -19,6 +22,7 @@ public class StatusCommand extends SubCommand {
     NamespacedKey namespacedKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"current_pos");
     NamespacedKey namespacedKey_Price = new NamespacedKey(DIGGER.getPlugin(),"task_price");
     NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
+    NamespacedKey namespacedKey_Task_Blocks = new NamespacedKey(DIGGER.getPlugin(),"task_blocks");
     @Override
     public String getName() {
         return "status";
@@ -45,7 +49,10 @@ public class StatusCommand extends SubCommand {
             location_send(namespacedKey_Pos2,data,player,"Pos2 is: ");
             location_send(namespacedKey_PosChest,data,player,"Chest pos is: ");
             on_off_send(namespacedKey_Task_Running,data,player,"Digger running: ");
-            location_send(namespacedKey_PosCurrent,data,player,"Current pos is: ");;
+            location_send(namespacedKey_PosCurrent,data,player,"Current pos is: ");
+            int number_of_blocks = data.get(namespacedKey_Task_Blocks, PersistentDataType.INTEGER);
+            player.sendMessage("Blocks remaining: "+ChatColor.GREEN+number_of_blocks+" blocks");
+            player.sendMessage("Time remaining: "+ChatColor.GREEN+number_of_blocks*12+" seconds");
             player.sendMessage("Digger price: "+ChatColor.GREEN+DataHandler.get_price(namespacedKey_Price,data)+"$");
             player.sendMessage(ChatColor.AQUA+"---------------------");
     }

@@ -39,15 +39,18 @@ public class CommandManager implements CommandExecutor {
                 int confirm = DataHandler.get_bool(namespacedKey_Confirm,data);
                 int task_running = DataHandler.get_bool(namespacedKey_Task_Running,data);
                 if(confirm == 1){
+                    if(args[0].equalsIgnoreCase(getSubcommands().get(3).getName())){
+                        getSubcommands().get(3).perform(p,args);
+                    }
                     if(args[0].equalsIgnoreCase(getSubcommands().get(4).getName())){
                         getSubcommands().get(4).perform(p,args);
+                    }
+                    else if(args[0].equalsIgnoreCase(getSubcommands().get(5).getName())){
+                        getSubcommands().get(5).perform(p,args);
                     }
                     else if(task_running==1){
                         p.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
                         return true;
-                    }
-                    else if(args[0].equalsIgnoreCase(getSubcommands().get(5).getName())){
-                        getSubcommands().get(5).perform(p,args);
                     }
                     else {
                         p.sendMessage(ChatColor.RED+"Can't run this command! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");

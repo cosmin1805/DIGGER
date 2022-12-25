@@ -38,8 +38,8 @@ public class CancelCommand extends SubCommand {
             int task_running = DataHandler.get_bool(namespacedKey_Task_Running,data);
             if(task_running == 1) {
                 DataHandler.change_bool(namespacedKey_Confirm,data,player,null);
-                player.sendMessage(ChatColor.RED+"YOU WILL NTO RECIVE ANY MONEY BACK!!");
-                player.sendMessage("Confirm this with /digger confirm or cancel it wuth /digger cancel !");
+                player.sendMessage(ChatColor.RED+"YOU WILL NTO RECEIVE ANY MONEY BACK!!");
+                player.sendMessage("Confirm this with /digger confirm or cancel it with /digger cancel !");
             }
         }
     }

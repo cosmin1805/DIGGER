@@ -21,6 +21,7 @@ public class DigPlace  {
 
     NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
     NamespacedKey namespacedKey_Task_Id= new NamespacedKey(DIGGER.getPlugin(),"task_id");
+    NamespacedKey namespacedKey_Task_Blocks = new NamespacedKey(DIGGER.getPlugin(),"task_blocks");
     NamespacedKey namespacedKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
     NamespacedKey namespacedKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
     NamespacedKey namespacedKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
@@ -55,6 +56,7 @@ public class DigPlace  {
                         }
                     }
                     block.setType(Material.AIR);
+                    data.set(namespacedKey_Task_Blocks, PersistentDataType.INTEGER, data.get(namespacedKey_Task_Blocks, PersistentDataType.INTEGER) - 1);
                 }
                 if(current_pos.getX()==pos2.getX() && current_pos.getY()==pos2.getY() && current_pos.getZ()==pos2.getZ()) {
                     DataHandler.change_bool(namespacedKey_Task_Running,data,player,null);

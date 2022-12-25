@@ -2,6 +2,7 @@ package ro.iacobai.digger.commands.subcommands;
 
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -41,7 +42,11 @@ public class ConfirmCommand extends SubCommand {
             int task_running = DataHandler.get_bool(namespacedKey_Task_Running,data);
             if(task_running == 1){
                 int ID = data.get(namespacedKey_Task_Id, PersistentDataType.INTEGER);
-                
+                Bukkit.getScheduler().cancelTask(ID);
+                DataHandler.change_bool(namespacedKey_Task_Running,data,player,null);
+                DataHandler.change_bool(namespacedKey_Confirm,data,player,null);
+                player.sendMessage(ChatColor.GREEN+"DIGGER HAS BEEN CANCELED!");
+                return;
             }
             double price = DataHandler.get_price(namespacedKey_Price,data);
             if(economy.getBalance(player)-price>=0)

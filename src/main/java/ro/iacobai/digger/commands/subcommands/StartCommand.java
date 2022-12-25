@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.commands.SubCommand;
 import ro.iacobai.digger.data.DataHandler;
@@ -19,6 +20,7 @@ public class StartCommand extends SubCommand {
     NamespacedKey namespacedKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
     NamespacedKey namespacedKey_Price = new NamespacedKey(DIGGER.getPlugin(),"task_price");
     NamespacedKey namespacedKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
+    NamespacedKey namespacedKey_Task_Blocks = new NamespacedKey(DIGGER.getPlugin(),"task_blocks");
     @Override
     public String getName() {
         return "start";
@@ -50,6 +52,8 @@ public class StartCommand extends SubCommand {
         location_send(namespacedKey_Pos2,data,player,"Pos2 is: ");
         player.sendMessage("This will cost you: "+ ChatColor.GREEN+price+"$");
         player.sendMessage("This will take to finish: "+ ChatColor.GREEN+number_of_blocks*12+" seconds");
+        player.sendMessage("This will remove : "+ ChatColor.GREEN+number_of_blocks+" blocks");
+        data.set(namespacedKey_Task_Blocks, PersistentDataType.INTEGER,  number_of_blocks);
         player.sendMessage("Confirm this with /digger confirm!");
         player.sendMessage(ChatColor.AQUA+"---------------------");
         DataHandler.change_bool(namespacedKey_Confirm,data,player,null);
