@@ -49,7 +49,7 @@ public class StartCommand extends SubCommand {
         location_send(namespacedKey_Pos1,data,player,"Pos1 is: ");
         location_send(namespacedKey_Pos2,data,player,"Pos2 is: ");
         player.sendMessage("This will cost you: "+ ChatColor.GREEN+price+"$");
-        player.sendMessage("This will take to finish: "+ ChatColor.GREEN+price+" seconds");
+        player.sendMessage("This will take to finish: "+ ChatColor.GREEN+number_of_blocks*12+" seconds");
         player.sendMessage("Confirm this with /digger confirm!");
         player.sendMessage(ChatColor.AQUA+"---------------------");
         DataHandler.change_bool(namespacedKey_Confirm,data,player,null);

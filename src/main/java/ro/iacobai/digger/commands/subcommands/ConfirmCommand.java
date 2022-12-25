@@ -9,6 +9,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.commands.SubCommand;
 import ro.iacobai.digger.data.DataHandler;
+import ro.iacobai.digger.tasks.DigPlace;
 
 public class ConfirmCommand extends SubCommand {
     NamespacedKey namespacedKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
@@ -42,6 +43,8 @@ public class ConfirmCommand extends SubCommand {
                 {
                     player.sendMessage("Taken "+ChatColor.GREEN+ price+"$");
                     player.sendMessage(ChatColor.GREEN+"DIGGER HAS STARTED!");
+                    DigPlace digPlace = new DigPlace();
+                    digPlace.run_t(player);
                 }
             }
             else
