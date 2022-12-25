@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import ro.iacobai.digger.DIGGER;
@@ -15,7 +16,7 @@ public class OnLeave implements Listener {
     NamespacedKey namespacedKey_Task_Id= new NamespacedKey(DIGGER.getPlugin(),"task_id");
     NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
     @EventHandler
-    public void onleave(PlayerJoinEvent event){
+    public void onleave(PlayerQuitEvent event){
         Player player = event.getPlayer();
         PersistentDataContainer data = player.getPersistentDataContainer();
         int task_running = DataHandler.get_bool(namespacedKey_Task_Running,data);
