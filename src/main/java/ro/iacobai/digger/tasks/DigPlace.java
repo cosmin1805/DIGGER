@@ -8,6 +8,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.data.DataHandler;
@@ -19,13 +20,14 @@ import ro.iacobai.digger.data.DataHandler;
 public class DigPlace  {
 
     NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
+    NamespacedKey namespacedKey_Task_Id= new NamespacedKey(DIGGER.getPlugin(),"task_id");
     NamespacedKey namespacedKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
     NamespacedKey namespacedKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
     NamespacedKey namespacedKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
     NamespacedKey namespacedKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
     NamespacedKey namespacedKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"current_pos");
 
-    public int run_t(Player player) {
+    public void run_t(Player player) {
         PersistentDataContainer data = player.getPersistentDataContainer();
         DataHandler.change_bool(namespacedKey_Task_Running,data,player,null);
 
@@ -88,7 +90,7 @@ public class DigPlace  {
                 DataHandler.save_position(namespacedKey_PosCurrent,data,current_pos);
             }
         }.runTaskTimer(plugin, 1,12 *20).getTaskId();
-        return ID;
+        data.set(namespacedKey_Task_Id, PersistentDataType.INTEGER, ID);
     }
 
 }
