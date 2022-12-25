@@ -50,6 +50,9 @@ public class StatusCommand extends SubCommand {
             location_send(namespacedKey_PosChest,data,player,"Chest pos is: ");
             on_off_send(namespacedKey_Task_Running,data,player,"Digger running: ");
             location_send(namespacedKey_PosCurrent,data,player,"Current pos is: ");
+            if (!data.has(namespacedKey_Task_Blocks, PersistentDataType.INTEGER)) {
+                data.set(namespacedKey_Task_Blocks, PersistentDataType.INTEGER, 0);
+            }
             int number_of_blocks = data.get(namespacedKey_Task_Blocks, PersistentDataType.INTEGER);
             player.sendMessage("Blocks remaining: "+ChatColor.GREEN+number_of_blocks+" blocks");
             player.sendMessage("Time remaining: "+ChatColor.GREEN+number_of_blocks*12+" seconds");
