@@ -1,18 +1,13 @@
 package ro.iacobai.digger.commands;
 
-import org.bukkit.ChatColor;
-import org.bukkit.NamespacedKey;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
+
 import org.jetbrains.annotations.NotNull;
-import ro.iacobai.digger.commands.subcommands.ChestCommand;
-import ro.iacobai.digger.commands.subcommands.SelectCommand;
-import ro.iacobai.digger.commands.subcommands.StartCommand;
-import ro.iacobai.digger.commands.subcommands.StatusCommand;
+import ro.iacobai.digger.commands.subcommands.*;
 
 import java.util.ArrayList;
 
@@ -23,6 +18,7 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new ChestCommand());
         subcommands.add(new StatusCommand());
         subcommands.add(new StartCommand());
+        subcommands.add(new ConfirmCommand());
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

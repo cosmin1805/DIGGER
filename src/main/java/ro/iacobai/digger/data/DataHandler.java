@@ -14,10 +14,12 @@ public class DataHandler {
         int data_select = data.get(namespacedKey, PersistentDataType.INTEGER);
         if (data_select == 1) {
             data.set(namespacedKey, PersistentDataType.INTEGER, 0);
-            player.sendMessage(ChatColor.RED + message + "OFF");
+            if(message != null)
+                player.sendMessage(ChatColor.RED + message + "OFF");
         } else {
             data.set(namespacedKey, PersistentDataType.INTEGER, 1);
-            player.sendMessage(ChatColor.GREEN + message + "ON");
+            if(message != null)
+                player.sendMessage(ChatColor.GREEN + message + "ON");
         }
     }
     public  static int  get_bool(NamespacedKey namespacedKey, PersistentDataContainer data){
@@ -43,5 +45,17 @@ public class DataHandler {
         int[] pos = data.get(namespacedKey, PersistentDataType.INTEGER_ARRAY);
         Location location = new Location(world,pos[0],pos[1],pos[2]);
         return location;
+    }
+    public static void save_price(NamespacedKey namespacedKey, PersistentDataContainer data,double price){
+        data.set(namespacedKey, PersistentDataType.DOUBLE, price);
+    }
+    public static double get_price(NamespacedKey namespacedKey, PersistentDataContainer data){
+        if (!data.has(namespacedKey, PersistentDataType.DOUBLE)) {
+            double price = 0;
+            save_price(namespacedKey,data,price);
+            return price;
+        }
+        double price = data.get(namespacedKey, PersistentDataType.DOUBLE);
+        return price;
     }
 }

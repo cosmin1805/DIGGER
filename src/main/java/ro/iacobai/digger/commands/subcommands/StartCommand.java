@@ -1,7 +1,7 @@
 package ro.iacobai.digger.commands.subcommands;
 
-import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -11,10 +11,14 @@ import ro.iacobai.digger.commands.SubCommand;
 import ro.iacobai.digger.data.DataHandler;
 
 import static java.lang.Math.abs;
+import static ro.iacobai.digger.commands.subcommands.StatusCommand.location_send;
+import static ro.iacobai.digger.data.DataHandler.save_price;
 
 public class StartCommand extends SubCommand {
     NamespacedKey namespacedKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
     NamespacedKey namespacedKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
+    NamespacedKey namespacedKey_Price = new NamespacedKey(DIGGER.getPlugin(),"task_price");
+    NamespacedKey namespacedKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
     @Override
     public String getName() {
         return "start";
@@ -33,21 +37,22 @@ public class StartCommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         PersistentDataContainer data = player.getPersistentDataContainer();
-        Economy economy = DIGGER.getEconomy();
         Location pos1 = DataHandler.get_position(namespacedKey_Pos1,data);
         Location pos2 = DataHandler.get_position(namespacedKey_Pos2,data);
         int h = (int) (abs(abs(pos1.getY()) - abs(pos2.getY())))+1;
         int l = (int)(abs(abs(pos1.getX()) - abs(pos2.getX())))+1;
         int w = (int)(abs(abs(pos1.getZ()) - abs(pos2.getZ())))+1;
         int number_of_blocks = h*l*w;
-        EconomyResponse response = economy.withdrawPlayer(player,20);
-        if(response.transactionSuccess())
-        {
-            player.sendMessage("Taken 20 dollars!");
-        }
-        else
-        {
-            player.sendMessage("Not taken 20 dollars!");
-        }
+        double price = number_of_blocks * 5;
+        save_price(namespacedKey_Price,data,price);
+        player.sendMessage(ChatColor.AQUA+"---------------------");
+        location_send(namespacedKey_Pos1,data,player,"Pos1 is: ");
+        location_send(namespacedKey_Pos2,data,player,"Pos2 is: ");
+        player.sendMessage("This will cost you: "+ ChatColor.GREEN+price+"$");
+        player.sendMessage("This will take to finish: "+ ChatColor.GREEN+price+" seconds");
+        player.sendMessage("Confirm this with /digger confirm!");
+        player.sendMessage(ChatColor.AQUA+"---------------------");
+        DataHandler.change_bool(namespacedKey_Confirm,data,player,null);
+
     }
 }

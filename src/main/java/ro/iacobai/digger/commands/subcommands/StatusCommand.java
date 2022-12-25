@@ -15,7 +15,8 @@ public class StatusCommand extends SubCommand {
     NamespacedKey namespacedKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
     NamespacedKey namespacedKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
     NamespacedKey namespacedKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
-    NamespacedKey getNamespacedKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
+    NamespacedKey namespacedKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
+    NamespacedKey namespacedKey_Price = new NamespacedKey(DIGGER.getPlugin(),"task_price");
     @Override
     public String getName() {
         return "status";
@@ -34,24 +35,25 @@ public class StatusCommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
             PersistentDataContainer data = player.getPersistentDataContainer();
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             on_off_send(namespacedKey_Pos,data,player,"Positions selector: ");
             on_off_send(namespacedKey_Chest,data,player,"Chest selector: ");
             on_off_send(namespacedKey_Use_Chest,data,player,"Use chest: ");
             location_send(namespacedKey_Pos1,data,player,"Pos1 is: ");
             location_send(namespacedKey_Pos2,data,player,"Pos2 is: ");
-            location_send(getNamespacedKey_PosChest,data,player,"Chest pos is: ");
+            location_send(namespacedKey_PosChest,data,player,"Chest pos is: ");
             player.sendMessage("Running digger: ");
-            player.sendMessage("Digger price: ");
-
+            player.sendMessage("Digger price: "+ChatColor.GREEN+DataHandler.get_price(namespacedKey_Price,data)+"$");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
     }
-    private  void on_off_send(NamespacedKey namespacedKey,PersistentDataContainer data,Player player,String message){
+    public static void on_off_send(NamespacedKey namespacedKey,PersistentDataContainer data,Player player,String message){
         if(DataHandler.get_bool(namespacedKey,data)==1){
             player.sendMessage(message+ ChatColor.GREEN+"ON");
         }else {
             player.sendMessage(message+ ChatColor.RED+"OFF");
         }
     }
-    private  void location_send(NamespacedKey namespacedKey,PersistentDataContainer data,Player player,String message){
+    public  static void location_send(NamespacedKey namespacedKey,PersistentDataContainer data,Player player,String message){
         Location location = DataHandler.get_position(namespacedKey,data);
         player.sendMessage(message+ ChatColor.GOLD+"x:"+ChatColor.LIGHT_PURPLE+location.getX()+ChatColor.GOLD+" y:"+ChatColor.LIGHT_PURPLE+location.getY()+ChatColor.GOLD+" z:"+ChatColor.LIGHT_PURPLE+location.getZ());
     }
