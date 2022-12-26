@@ -1,5 +1,6 @@
 package ro.iacobai.digger.commands.subcommands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import ro.iacobai.digger.commands.SubCommand;
@@ -32,6 +33,7 @@ public class ParticleCommand extends SubCommand {
             DataHandler.change_bool(dataHandler.namespaceKey_Task_Highlight,data,player,null);
         }
         else {
+            player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
             DataHandler.change_bool(dataHandler.namespaceKey_Task_Highlight,data,player,null);
         }
 
