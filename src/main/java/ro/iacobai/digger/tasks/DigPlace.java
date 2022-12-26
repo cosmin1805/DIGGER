@@ -31,7 +31,7 @@ public class DigPlace  {
                 Location current_pos = DataHandler.get_position(dataHandler.namespacesKey_PosCurrent,data);
                 Block block = current_pos.getBlock();
                 Material material_b = block.getBlockData().getMaterial();
-                if (!material_b.equals(Material.BEDROCK)){
+                if (material_b.getHardness()!=-1){
                     if(use_chest==1) {
                         ItemStack item = new ItemStack(block.getBlockData().getMaterial());
                         Material material = chest_pos.getBlock().getBlockData().getMaterial();
@@ -41,9 +41,9 @@ public class DigPlace  {
                         }
                     }
                     block.setType(Material.AIR);
-                    double blocks = DataHandler.get_double(dataHandler.namespaceKey_Task_Blocks,data) - 1;
-                    DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,blocks);
                 }
+                double blocks = DataHandler.get_double(dataHandler.namespaceKey_Task_Blocks,data) - 1;
+                DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,blocks);
                 if(current_pos.getX()==pos2.getX() && current_pos.getY()==pos2.getY() && current_pos.getZ()==pos2.getZ()) {
                     DataHandler.change_bool(dataHandler.namespaceKey_Task_Running,data,player,null);
                     player.sendMessage(ChatColor.GREEN+"Digger has finished!");
