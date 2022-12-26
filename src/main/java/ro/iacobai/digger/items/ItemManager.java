@@ -10,6 +10,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
+import ro.iacobai.digger.commands.subcommands.StatusCommand;
 import ro.iacobai.digger.data.DataHandler;
 
 import java.util.HashMap;
@@ -69,11 +70,11 @@ public class ItemManager implements Listener {
             if(DataHandler.get_bool(dataHandler.namespacesKey_Pos,data) == 1){
                 if(action.equals(Action.LEFT_CLICK_BLOCK)){
                     DataHandler.save_position(dataHandler.namespaceKey_Pos1,data,blockLocation);
-                    player.sendMessage(ChatColor.WHITE + "Pos1: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
+                    StatusCommand.location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1: ");
                 }
                 else {
                     DataHandler.save_position(dataHandler.namespaceKey_Pos2,data,blockLocation);
-                    player.sendMessage(ChatColor.WHITE + "Pos2: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
+                    StatusCommand.location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2: ");
                 }
             }
         }
