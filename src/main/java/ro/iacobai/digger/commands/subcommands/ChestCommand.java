@@ -8,7 +8,7 @@ import ro.iacobai.digger.commands.SubCommand;
 import ro.iacobai.digger.data.DataHandler;
 
 public class ChestCommand extends SubCommand {
-    NamespacedKey namespacedKey = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
+    DataHandler dataHandler = new DataHandler();
     @Override
     public String getName() {
         return "chest";
@@ -27,6 +27,6 @@ public class ChestCommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         PersistentDataContainer data = player.getPersistentDataContainer();
-        DataHandler.change_bool(namespacedKey,data,player,"Digger use chest ");
+        DataHandler.change_bool(dataHandler.namespaceKey_Use_Chest,data,player,"Digger use chest ");
     }
 }

@@ -2,7 +2,6 @@ package ro.iacobai.digger.commands;
 
 
 import org.bukkit.ChatColor;
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,15 +9,13 @@ import org.bukkit.entity.Player;
 
 import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
-import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.commands.subcommands.*;
 import ro.iacobai.digger.data.DataHandler;
 
 import java.util.ArrayList;
 
 public class CommandManager implements CommandExecutor {
-    NamespacedKey namespacedKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
-    NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
+    DataHandler dataHandler = new DataHandler();
     private ArrayList<SubCommand> subcommands = new ArrayList<>();
     public  CommandManager(){
         subcommands.add(new SelectCommand());
@@ -40,9 +37,7 @@ public class CommandManager implements CommandExecutor {
                 }
                 p.sendMessage(ChatColor.AQUA+"---------------------");
             } else if (args.length > 0) {
-                int confirm = DataHandler.get_bool(namespacedKey_Confirm,data);
-                int task_running = DataHandler.get_bool(namespacedKey_Task_Running,data);
-                if(confirm == 1){
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1){
                     if(args[0].equalsIgnoreCase(getSubcommands().get(3).getName())){
                         getSubcommands().get(3).perform(p,args);
                     }
@@ -52,7 +47,7 @@ public class CommandManager implements CommandExecutor {
                     else if(args[0].equalsIgnoreCase(getSubcommands().get(5).getName())){
                         getSubcommands().get(5).perform(p,args);
                     }
-                    else if(task_running==1){
+                    else if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
                         p.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
                         return true;
                     }

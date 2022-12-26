@@ -12,7 +12,6 @@ import ro.iacobai.digger.items.ItemManager;
 import ro.iacobai.digger.player.OnJoin;
 import ro.iacobai.digger.player.OnLeave;
 
-import java.util.List;
 
 
 public final class DIGGER extends JavaPlugin implements Listener {

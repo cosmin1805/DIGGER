@@ -12,8 +12,7 @@ import ro.iacobai.digger.data.DataHandler;
 import java.util.Objects;
 
 public class SelectCommand extends SubCommand{
-    NamespacedKey namespacedKey_Pos = new NamespacedKey(DIGGER.getPlugin(),"pos_select");
-    NamespacedKey namespacedKey_Chest = new NamespacedKey(DIGGER.getPlugin(),"chest_select");
+    DataHandler dataHandler = new DataHandler();
     @Override
     public String getName() {
         return "select";
@@ -38,10 +37,10 @@ public class SelectCommand extends SubCommand{
         }
         if(Objects.equals(args[1], "chest"))
         {
-            DataHandler.change_bool(namespacedKey_Chest,data,player,"Digger chest selector ");
+            DataHandler.change_bool(dataHandler.namespaceKey_Chest,data,player,"Digger chest selector ");
         }
         else if(Objects.equals(args[1], "pos")){
-            DataHandler.change_bool(namespacedKey_Pos,data,player,"Digger position selector ");
+            DataHandler.change_bool(dataHandler.namespacesKey_Pos,data,player,"Digger position selector ");
         }
     }
 }

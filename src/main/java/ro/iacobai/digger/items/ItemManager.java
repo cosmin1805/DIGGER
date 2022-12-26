@@ -10,20 +10,13 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
-import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.data.DataHandler;
 
 import java.util.HashMap;
 import java.util.UUID;
 
 public class ItemManager implements Listener {
-    NamespacedKey namespacedKey_Pos = new NamespacedKey(DIGGER.getPlugin(),"pos_select");
-    NamespacedKey namespacedKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
-    NamespacedKey namespacedKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
-    NamespacedKey namespacedKey_Chest = new NamespacedKey(DIGGER.getPlugin(),"chest_select");
-    NamespacedKey getNamespacedKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
-    NamespacedKey namespacedKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
-    NamespacedKey namespacedKey_Task_Running= new NamespacedKey(DIGGER.getPlugin(),"task_running");
+    DataHandler dataHandler = new DataHandler();
     private HashMap<UUID, Long> cooldown=new HashMap<>();
     @EventHandler
     public void onInteract(PlayerInteractEvent event){
@@ -51,39 +44,35 @@ public class ItemManager implements Listener {
                 return;
             }
             PersistentDataContainer data = player.getPersistentDataContainer();
-            int confirm = DataHandler.get_bool(namespacedKey_Confirm,data);
-            int task_running = DataHandler.get_bool(namespacedKey_Task_Running,data);
-            if(task_running==1){
+            if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
                 player.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
                 return;
             }
-            if(confirm == 1){
+            if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1){
                 player.sendMessage(ChatColor.RED+"Can't do this action! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
                 return;
             }
             Block block = event.getClickedBlock();
             Location blockLocation = block.getLocation();
-            int chest = DataHandler.get_bool(namespacedKey_Chest,data);
-            if(chest == 1){
+            if(DataHandler.get_bool(dataHandler.namespaceKey_Chest,data) == 1){
                 Material material = block.getBlockData().getMaterial();
                 if (material.equals(Material.CHEST)) {
-                    DataHandler.save_position(getNamespacedKey_PosChest,data,blockLocation);
+                    DataHandler.save_position(dataHandler.namespaceKey_PosChest,data,blockLocation);
                     player.sendMessage(ChatColor.AQUA+"---------------------");
                     player.sendMessage(ChatColor.GREEN + "CHEST SELECTED!");
                     player.sendMessage(ChatColor.WHITE + "CHEST POS: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
                     player.sendMessage(ChatColor.AQUA+"---------------------");
-                    DataHandler.change_bool(namespacedKey_Chest,data,player,"Digger chest selector ");
+                    DataHandler.change_bool(dataHandler.namespaceKey_Use_Chest,data,player,"Digger chest selector ");
                 }
                 return;
             }
-            int pos = DataHandler.get_bool(namespacedKey_Pos,data);
-            if(pos == 1){
+            if(DataHandler.get_bool(dataHandler.namespacesKey_Pos,data) == 1){
                 if(action.equals(Action.LEFT_CLICK_BLOCK)){
-                    DataHandler.save_position(namespacedKey_Pos1,data,blockLocation);
+                    DataHandler.save_position(dataHandler.namespaceKey_Pos1,data,blockLocation);
                     player.sendMessage(ChatColor.WHITE + "Pos1: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
                 }
                 else {
-                    DataHandler.save_position(namespacedKey_Pos2,data,blockLocation);
+                    DataHandler.save_position(dataHandler.namespaceKey_Pos2,data,blockLocation);
                     player.sendMessage(ChatColor.WHITE + "Pos2: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
                 }
             }
