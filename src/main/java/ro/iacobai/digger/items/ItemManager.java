@@ -67,7 +67,7 @@ public class ItemManager implements Listener {
                     player.sendMessage(ChatColor.GREEN + "CHEST SELECTED!");
                     player.sendMessage(ChatColor.WHITE + "CHEST POS: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
                     player.sendMessage(ChatColor.AQUA+"---------------------");
-                    DataHandler.change_bool(dataHandler.namespaceKey_Use_Chest,data,player,"Digger chest selector ");
+                    DataHandler.change_bool(dataHandler.namespaceKey_Chest,data,player,"Digger chest selector ");
                 }
                 return;
             }
