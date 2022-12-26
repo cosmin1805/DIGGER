@@ -39,6 +39,7 @@ public class Particles {
             @Override
             public void run(){
                 player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
+                DataHandler.change_bool(dataHandler.namespaceKey_Task_Highlight,data,player,null);
                 Bukkit.getScheduler().cancelTask(ID);
             }
         }.runTaskLater(plugin, 120*20).getTaskId();
