@@ -1,2 +1,4 @@
-package ro.iacobai.digger.tasks;public class Particles {
+package ro.iacobai.digger.tasks;
+
+public class Particles {
 }

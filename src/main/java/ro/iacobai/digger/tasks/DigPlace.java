@@ -1,5 +1,6 @@
 package ro.iacobai.digger.tasks;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -45,7 +46,7 @@ public class DigPlace  {
                 }
                 if(current_pos.getX()==pos2.getX() && current_pos.getY()==pos2.getY() && current_pos.getZ()==pos2.getZ()) {
                     DataHandler.change_bool(dataHandler.namespaceKey_Task_Running,data,player,null);
-                    player.sendMessage("Digger has finished!");
+                    player.sendMessage(ChatColor.GREEN+"Digger has finished!");
                     this.cancel();
                 }
                 else if(current_pos.getX()==pos2.getX()  && current_pos.getZ()==pos2.getZ()){

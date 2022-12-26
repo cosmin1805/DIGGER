@@ -38,7 +38,7 @@ public class ConfirmCommand extends SubCommand {
             if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data) == 1){
                 Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Id,data));
                 DataHandler.change_bool(dataHandler.namespaceKey_Confirm,data,player,null);
-                DataHandler.change_bool(dataHandler.namespaceKey_Confirm,data,player,null);
+                DataHandler.change_bool(dataHandler.namespaceKey_Task_Running,data,player,null);
                 player.sendMessage(ChatColor.GREEN+"DIGGER HAS BEEN CANCELED!");
                 return;
             }

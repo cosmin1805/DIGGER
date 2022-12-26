@@ -49,7 +49,6 @@ public class CommandManager implements CommandExecutor {
                     }
                     else if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
                         p.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
-                        return true;
                     }
                     else {
                         p.sendMessage(ChatColor.RED+"Can't run this command! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
