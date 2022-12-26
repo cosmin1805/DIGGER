@@ -8,7 +8,6 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.data.DataHandler;
@@ -16,6 +15,7 @@ import ro.iacobai.digger.data.DataHandler;
 
 public class DigPlace  {
     DataHandler dataHandler = new DataHandler();
+    DIGGER digger = DIGGER.getPlugin();
     public void run_t(Player player) {
         PersistentDataContainer data = player.getPersistentDataContainer();
         Location pos1 = DataHandler.get_position(dataHandler.namespaceKey_Pos1,data);
@@ -77,7 +77,7 @@ public class DigPlace  {
                 }
                 DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,current_pos);
             }
-        }.runTaskTimer(plugin, 1,12 *20).getTaskId();
+        }.runTaskTimer(plugin, 1, digger.getConfig().getInt("Time") *20).getTaskId();
         DataHandler.save_int(dataHandler.namespaceKey_Task_Id,data,ID);
     }
 

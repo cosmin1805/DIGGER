@@ -5,8 +5,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 
+
+import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.commands.SubCommand;
 import ro.iacobai.digger.data.DataHandler;
 
@@ -15,6 +16,7 @@ import static ro.iacobai.digger.commands.subcommands.StatusCommand.location_send
 
 
 public class StartCommand extends SubCommand {
+    DIGGER digger = DIGGER.getPlugin();
     DataHandler dataHandler = new DataHandler();
     @Override
     public String getName() {
@@ -40,14 +42,14 @@ public class StartCommand extends SubCommand {
         int l = (int)(abs(abs(pos1.getX()) - abs(pos2.getX())))+1;
         int w = (int)(abs(abs(pos1.getZ()) - abs(pos2.getZ())))+1;
         double number_of_blocks = h*l*w;
-        double price = number_of_blocks * 5;
+        double price = number_of_blocks * digger.getConfig().getDouble("Price");
         DataHandler.save_double(dataHandler.namespaceKey_Price,data,price);
         DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,number_of_blocks);
         player.sendMessage(ChatColor.AQUA+"---------------------");
         location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1 is: ");
         location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2 is: ");
         player.sendMessage("This will cost you: "+ ChatColor.GREEN+price+"$");
-        player.sendMessage("This will take to finish: "+ ChatColor.GREEN+number_of_blocks*12+" seconds");
+        player.sendMessage("This will take to finish: "+ ChatColor.GREEN+number_of_blocks*digger.getConfig().getInt("Time")+" seconds");
         player.sendMessage("This will remove : "+ ChatColor.GREEN+number_of_blocks+" blocks");
         player.sendMessage("Confirm this with /digger confirm!");
         player.sendMessage(ChatColor.AQUA+"---------------------");
