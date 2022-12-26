@@ -13,7 +13,7 @@ public class TabComplete implements TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(args.length==1){
-            List<String> tabs =Arrays.asList("select","chest","status","start","confirm","cancel");
+            List<String> tabs =Arrays.asList("select","chest","status","start","confirm","cancel","particle");
             return tabs;
         }
         else if (args.length==2 && args[1].equals("select")){

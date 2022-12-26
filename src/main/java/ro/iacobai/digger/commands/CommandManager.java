@@ -24,6 +24,7 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new StartCommand());
         subcommands.add(new ConfirmCommand());
         subcommands.add(new CancelCommand());
+        subcommands.add(new ParticleCommand());
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
