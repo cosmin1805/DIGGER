@@ -42,7 +42,7 @@ public class StartCommand extends SubCommand {
         double number_of_blocks = h*l*w;
         double price = number_of_blocks * 5;
         DataHandler.save_double(dataHandler.namespaceKey_Price,data,price);
-        DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,price);
+        DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,number_of_blocks);
         player.sendMessage(ChatColor.AQUA+"---------------------");
         location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1 is: ");
         location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2 is: ");
