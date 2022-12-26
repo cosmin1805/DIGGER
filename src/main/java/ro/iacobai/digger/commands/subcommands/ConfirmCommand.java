@@ -57,6 +57,9 @@ public class ConfirmCommand extends SubCommand {
                     DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,pos1);
                     digPlace.run_t(player);
                 }
+                else{
+                    System.out.println(response.errorMessage);
+                }
             }
             else
             {
