@@ -45,8 +45,12 @@ public class ItemManager implements Listener {
                 return;
             }
             PersistentDataContainer data = player.getPersistentDataContainer();
+            if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Highlight,data)==1){
+                player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current Highlight with /digger particle !");
+                return;
+            }
             if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
-                player.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
+                player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current digger with /digger cancel or wait for it to finish!");
                 return;
             }
             if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1){

@@ -23,6 +23,10 @@ public class Particles {
         int ID = new BukkitRunnable(){
             @Override
             public void run(){
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Highlight,data)==0){
+                    player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
+                    this.cancel();
+                }
                 for (Location element : hollowCube) {
                     World world = Bukkit.getWorld("world");
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.BLUE,1.1F);
@@ -34,7 +38,7 @@ public class Particles {
         new BukkitRunnable(){
             @Override
             public void run(){
-                player.sendMessage(ChatColor.GREEN+"The particle highlight has stopped!");
+                player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
                 Bukkit.getScheduler().cancelTask(ID);
             }
         }.runTaskLater(plugin, 120*20).getTaskId();

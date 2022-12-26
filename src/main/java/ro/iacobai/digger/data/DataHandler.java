@@ -15,6 +15,7 @@ public class DataHandler {
     public NamespacedKey namespaceKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
     public NamespacedKey namespaceKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
     public NamespacedKey namespaceKey_Task_Running = new NamespacedKey(DIGGER.getPlugin(),"task_running");
+    public NamespacedKey namespaceKey_Task_Highlight= new NamespacedKey(DIGGER.getPlugin(),"task_highlight");
     //ALL THE LOCATIONS
     public NamespacedKey namespaceKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
     public NamespacedKey namespaceKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
