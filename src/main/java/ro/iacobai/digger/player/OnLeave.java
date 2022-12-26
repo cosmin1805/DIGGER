@@ -19,5 +19,9 @@ public class OnLeave implements Listener {
             Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Id,data));
             System.out.println("Task of " +player.getName()+" canceled!");
         }
+        if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Highlight,data)==1){
+            Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Particle_Id,data));
+            DataHandler.change_bool(dataHandler.namespaceKey_Task_Highlight,data,player,null);
+        }
     }
 }

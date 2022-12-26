@@ -34,15 +34,15 @@ public class Particles {
 
             }
         }.runTaskTimer(plugin, 1, 9).getTaskId();
-        new BukkitRunnable(){
+        int ID2 = new BukkitRunnable(){
             @Override
             public void run(){
-                player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
                 Bukkit.getScheduler().cancelTask(ID);
+                player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
                 DataHandler.change_bool(dataHandler.namespaceKey_Task_Highlight,data,player,null);
             }
         }.runTaskLater(plugin, 120*20).getTaskId();
-
+        DataHandler.save_int(dataHandler.namespaceKey_Task_Particle_Id,data,ID2);
     }
     public List<Location> getHollowCube(Location corner1, Location corner2, double particleDistance) {
         corner1.set(corner1.getX(),corner1.getY(),corner1.getZ());
