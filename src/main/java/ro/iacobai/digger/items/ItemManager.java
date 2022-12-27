@@ -57,21 +57,26 @@ public class ItemManager implements Listener {
                 player.sendMessage(ChatColor.RED+"Can't do this action! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
                 return;
             }
-            Block block = event.getClickedBlock();
-            Location blockLocation = block.getLocation();
-            if(DataHandler.get_bool(dataHandler.namespaceKey_Chest,data) == 1){
+            if(DataHandler.get_bool(dataHandler.namespacesKey_Pos,data) == 1){
+                Block block = event.getClickedBlock();
+                Location blockLocation = block.getLocation();
                 Material material = block.getBlockData().getMaterial();
                 if (material.equals(Material.CHEST)) {
-                    DataHandler.save_position(dataHandler.namespaceKey_PosChest,data,blockLocation);
-                    player.sendMessage(ChatColor.AQUA+"---------------------");
-                    player.sendMessage(ChatColor.GREEN + "CHEST SELECTED!");
-                    player.sendMessage(ChatColor.WHITE + "CHEST POS: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
-                    player.sendMessage(ChatColor.AQUA+"---------------------");
-                    DataHandler.change_bool(dataHandler.namespaceKey_Chest,data,player,"Digger chest selector ");
+                        DataHandler.save_position(dataHandler.namespaceKey_PosChest,data,blockLocation);
+                        player.sendMessage(ChatColor.AQUA+"---------------------");
+                        player.sendMessage(ChatColor.GREEN + "CHEST SELECTED!");
+                        player.sendMessage(ChatColor.WHITE + "CHEST POS: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
+                        player.sendMessage(ChatColor.AQUA+"---------------------");
+                        return;
                 }
-                return;
-            }
-            if(DataHandler.get_bool(dataHandler.namespacesKey_Pos,data) == 1){
+                if (material.equals(Material.HOPPER)) {
+                    DataHandler.save_position(dataHandler.namespaceKey_PosHopper,data,blockLocation);
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
+                    player.sendMessage(ChatColor.GREEN + "HOPPER SELECTED!");
+                    player.sendMessage(ChatColor.WHITE + "HOPPER POS: " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
+                    return;
+                }
                 if(action.equals(Action.LEFT_CLICK_BLOCK)){
                     DataHandler.save_position(dataHandler.namespaceKey_Pos1,data,blockLocation);
                     StatusCommand.location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1: ");

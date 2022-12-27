@@ -11,7 +11,6 @@ public class DataHandler {
 
     //ALL THE "BOOLEANS"
     public NamespacedKey namespacesKey_Pos = new NamespacedKey(DIGGER.getPlugin(),"pos_select");
-    public NamespacedKey namespaceKey_Chest = new NamespacedKey(DIGGER.getPlugin(),"chest_select");
     public NamespacedKey namespaceKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
     public NamespacedKey namespaceKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
     public NamespacedKey namespaceKey_Task_Running = new NamespacedKey(DIGGER.getPlugin(),"task_running");
@@ -20,6 +19,7 @@ public class DataHandler {
     public NamespacedKey namespaceKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
     public NamespacedKey namespaceKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
     public NamespacedKey namespaceKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
+    public NamespacedKey namespaceKey_PosHopper = new NamespacedKey(DIGGER.getPlugin(),"hopper_pos");
     public NamespacedKey namespacesKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"current_pos");
     //ALL THE INTEGERS AND DOUBLE DATA
     public NamespacedKey namespaceKey_Price = new NamespacedKey(DIGGER.getPlugin(),"task_price");

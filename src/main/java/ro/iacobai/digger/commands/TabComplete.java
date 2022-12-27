@@ -16,10 +16,6 @@ public class TabComplete implements TabCompleter {
             List<String> tabs =Arrays.asList("select","chest","status","start","confirm","cancel","particle");
             return tabs;
         }
-        else if (args.length==2 && args[0].equals("select")){
-            List<String> tabs = Arrays.asList("pos","chest");
-            return tabs;
-        }
         return null;
     }
 }

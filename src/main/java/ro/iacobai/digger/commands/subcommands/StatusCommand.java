@@ -34,11 +34,11 @@ public class StatusCommand extends SubCommand {
             PersistentDataContainer data = player.getPersistentDataContainer();
             player.sendMessage(ChatColor.AQUA+"---------------------");
             on_off_send(dataHandler.namespacesKey_Pos,data,player,"Positions selector: ");
-            on_off_send(dataHandler.namespaceKey_Chest,data,player,"Chest selector: ");
             on_off_send(dataHandler.namespaceKey_Use_Chest,data,player,"Use chest: ");
             location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1 is: ");
             location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2 is: ");
             location_send(dataHandler.namespaceKey_PosChest,data,player,"Chest pos is: ");
+            location_send(dataHandler.namespaceKey_PosHopper,data,player,"Hopper pos is: ");
             on_off_send(dataHandler.namespaceKey_Task_Running,data,player,"Digger running: ");
             location_send(dataHandler.namespacesKey_PosCurrent,data,player,"Current pos is: ");
             double number_of_blocks = DataHandler.get_double(dataHandler.namespaceKey_Task_Blocks,data);
