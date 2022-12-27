@@ -2,7 +2,6 @@ name: DIGGER
 version: '${project.version}'
 main: ro.iacobai.digger.DIGGER
 api-version: 1.19
-depend: [Vault]
 commands:
   digger:
     description: Digger main command

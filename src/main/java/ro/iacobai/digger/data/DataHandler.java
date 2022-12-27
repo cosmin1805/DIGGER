@@ -22,7 +22,6 @@ public class DataHandler {
     public NamespacedKey namespaceKey_PosHopper = new NamespacedKey(DIGGER.getPlugin(),"hopper_pos");
     public NamespacedKey namespacesKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"current_pos");
     //ALL THE INTEGERS AND DOUBLE DATA
-    public NamespacedKey namespaceKey_Price = new NamespacedKey(DIGGER.getPlugin(),"task_price");
     public NamespacedKey namespaceKey_Task_Blocks = new NamespacedKey(DIGGER.getPlugin(),"task_blocks");
     public NamespacedKey namespaceKey_Task_Id = new NamespacedKey(DIGGER.getPlugin(),"task_id");
     public NamespacedKey namespaceKey_Task_Particle_Id = new NamespacedKey(DIGGER.getPlugin(),"task_particle_id");

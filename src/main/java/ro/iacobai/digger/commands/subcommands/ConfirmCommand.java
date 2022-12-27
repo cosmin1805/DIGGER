@@ -32,7 +32,6 @@ public class ConfirmCommand extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
-        Economy economy = DIGGER.getEconomy();
         PersistentDataContainer data = player.getPersistentDataContainer();
         if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1){
             if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data) == 1){
@@ -42,29 +41,13 @@ public class ConfirmCommand extends SubCommand {
                 player.sendMessage(ChatColor.GREEN+"DIGGER HAS BEEN CANCELED!");
                 return;
             }
-            double price = DataHandler.get_double(dataHandler.namespaceKey_Price,data);
-            if(economy.getBalance(player)-price>=0)
-            {
-                EconomyResponse response = economy.withdrawPlayer(player,price);
-                if(response.transactionSuccess())
-                {
-                    player.sendMessage("Taken "+ChatColor.GREEN+ price+"$");
-                    player.sendMessage(ChatColor.GREEN+"DIGGER HAS STARTED!");
-                    DigPlace digPlace = new DigPlace();
-                    DataHandler.change_bool(dataHandler.namespaceKey_Task_Running,data,player,null);
+            player.sendMessage(ChatColor.GREEN+"DIGGER HAS STARTED!");
+            DigPlace digPlace = new DigPlace();
+            DataHandler.change_bool(dataHandler.namespaceKey_Task_Running,data,player,null);
 
-                    Location pos1 = DataHandler.get_position(dataHandler.namespaceKey_Pos1,data);
-                    DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,pos1);
-                    digPlace.run_t(player);
-                }
-                else{
-                    System.out.println(response.errorMessage);
-                }
-            }
-            else
-            {
-                player.sendMessage(ChatColor.RED+"Not enough founds!");
-            }
+            Location pos1 = DataHandler.get_position(dataHandler.namespaceKey_Pos1,data);
+            DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,pos1);
+            digPlace.run_t(player);
             DataHandler.change_bool(dataHandler.namespaceKey_Confirm,data,player,null);
         }else {
             player.sendMessage(ChatColor.RED+"First do /digger start or /digger stop !");

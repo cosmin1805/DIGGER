@@ -44,7 +44,6 @@ public class StatusCommand extends SubCommand {
             double number_of_blocks = DataHandler.get_double(dataHandler.namespaceKey_Task_Blocks,data);
             player.sendMessage("Blocks remaining: "+ChatColor.GREEN+number_of_blocks+" blocks");
             player.sendMessage("Time remaining: "+ChatColor.GREEN+number_of_blocks*12+" seconds");
-            player.sendMessage("Digger price: "+ChatColor.GREEN+DataHandler.get_double(dataHandler.namespaceKey_Price,data)+"$");
             player.sendMessage(ChatColor.AQUA+"---------------------");
     }
     public static void on_off_send(NamespacedKey namespacedKey,PersistentDataContainer data,Player player,String message){
