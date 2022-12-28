@@ -4,7 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.Chest;
 import org.bukkit.block.Hopper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -14,6 +13,7 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.scheduler.BukkitRunnable;
 import ro.iacobai.digger.DIGGER;
+import ro.iacobai.digger.blocks.Chest;
 import ro.iacobai.digger.blocks.TimeToBreakBlock;
 import ro.iacobai.digger.data.DataHandler;
 
@@ -60,7 +60,7 @@ public class DigPlace  {
                 }
                 if(material_current_block.getHardness()!=-1){
                     current_block.breakNaturally(tool);
-
+                    new Chest().get_nearby_entities(current_pos,chest_pos);
                 }
                 double blocks = DataHandler.get_double(dataHandler.namespaceKey_Task_Blocks,data) - 1;
                 DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,blocks);
@@ -97,8 +97,8 @@ public class DigPlace  {
                         current_pos.setZ(current_pos.getZ()+1);
                     }
                 }
-
                 DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,current_pos);
+                run_t(player);
             }
         }.runTaskTimer(plugin, 1, digger.getConfig().getInt("Time") *20).getTaskId();
         DataHandler.save_int(dataHandler.namespaceKey_Task_Id,data,ID);
