@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 
-public class Chest {
+public class Chest_ {
     public boolean exists(Location chest_pos){
         Material material = chest_pos.getBlock().getBlockData().getMaterial();
         if(!material.equals(Material.CHEST)){

@@ -5,16 +5,12 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Hopper;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.scheduler.BukkitRunnable;
 import ro.iacobai.digger.DIGGER;
-import ro.iacobai.digger.blocks.Chest;
-import ro.iacobai.digger.blocks.TimeToBreakBlock;
+import ro.iacobai.digger.blocks.Chest_;
 import ro.iacobai.digger.data.DataHandler;
 
 
@@ -44,11 +40,11 @@ public class DigPlace  {
                 if(material_hopper.equals(Material.HOPPER)){
                     Hopper hopper_data = (Hopper) hopper.getState();
                     tool = new ro.iacobai.digger.blocks.Hopper().check_inventory_tools_durability(hopper_data);
-                    if(tool.equals(null)){
+                    if(tool == null){
                         return;
                     }
                     if(use_chest==1) {
-                        boolean chest_exists = new ro.iacobai.digger.blocks.Chest().exists(chest_pos);
+                        boolean chest_exists = new ro.iacobai.digger.blocks.Chest_().exists(chest_pos);
                         if(!chest_exists)
                         {
                             return;
@@ -60,7 +56,9 @@ public class DigPlace  {
                 }
                 if(material_current_block.getHardness()!=-1){
                     current_block.breakNaturally(tool);
-                    new Chest().get_nearby_entities(current_pos,chest_pos);
+                    if(use_chest==1) {
+                        new Chest_().get_nearby_entities(current_pos,chest_pos);
+                    }
                 }
                 double blocks = DataHandler.get_double(dataHandler.namespaceKey_Task_Blocks,data) - 1;
                 DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,blocks);
@@ -68,7 +66,7 @@ public class DigPlace  {
                 if(current_pos.getX()==pos2.getX() && current_pos.getY()==pos2.getY() && current_pos.getZ()==pos2.getZ()) {
                     DataHandler.change_bool(dataHandler.namespaceKey_Task_Running,data,player,null);
                     player.sendMessage(ChatColor.GREEN+"Digger has finished!");
-                    this.cancel();
+                    return;
                 }
                 //MOKVE THE CURRENT BLOCK
                 else if(current_pos.getX()==pos2.getX()  && current_pos.getZ()==pos2.getZ()){
@@ -100,7 +98,7 @@ public class DigPlace  {
                 DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,current_pos);
                 run_t(player);
             }
-        }.runTaskTimer(plugin, 1, digger.getConfig().getInt("Time") *20).getTaskId();
+        }.runTaskLater(plugin, digger.getConfig().getInt("Time") *20).getTaskId();
         DataHandler.save_int(dataHandler.namespaceKey_Task_Id,data,ID);
     }
 
