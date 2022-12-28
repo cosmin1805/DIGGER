@@ -1,18 +1,16 @@
 package ro.iacobai.digger.blocks;
 
 import org.bukkit.Location;
-import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
-import ro.iacobai.digger.DIGGER;
 
 public class TimeToBreakBlock {
-    DIGGER digger = DIGGER.getPlugin();
+
     public int calculate(ItemStack tool, Location current_pos){
         float speed = current_pos.getBlock().getDestroySpeed(tool);
         Damageable meta = (Damageable) tool.getItemMeta();
-        if(meta.hasEnchant((Enchantment.DIG_SPEED))){
+        if(meta.hasEnchant((Enchantment.DIG_SPEED))&& speed == 8){
             speed += meta.getEnchantLevel(Enchantment.DIG_SPEED) ^ 2 + 1;
         }
         float damage = speed / current_pos.getBlock().getBlockData().getMaterial().getHardness();
@@ -24,7 +22,7 @@ public class TimeToBreakBlock {
             damage/=100;
         }
         if(damage > 1){
-            return  0;
+            return  20;
         }
         return  Math.round(1/damage);
     }

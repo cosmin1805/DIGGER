@@ -42,12 +42,12 @@ public class DigPlace  {
                     if(material_current_block.getHardness()!=-1 && material_current_block.getHardness() <= 50 && !material_current_block.isAir()){
                         tool = new ro.iacobai.digger.blocks.Hopper().check_most_efficient(hopper_data,current_pos,use_break);
                         if(tool == null){
-                            tool = new ro.iacobai.digger.blocks.Hopper().check_inventory_tools_durability(hopper_data,use_break);
-                            if(tool == null){
-                                DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
-                                player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
-                                return;
-                            }
+                            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                            player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
+                            return;
+                        }
+                        else {
+                            new ro.iacobai.digger.blocks.Hopper().damage_tool(tool,use_break,hopper_data);
                         }
                     }
                     if(use_chest==1) {
@@ -112,12 +112,21 @@ public class DigPlace  {
                         current_pos.setZ(current_pos.getZ()+1);
                     }
                 }
+                DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,current_pos);
                 int ticks= 0;
                 if(tool != null){
-                    ticks = new TimeToBreakBlock().calculate(tool,current_pos);
+                    Hopper hopper_data = (Hopper) hopper.getState();
+                    tool = new ro.iacobai.digger.blocks.Hopper().check_most_efficient(hopper_data,current_pos,use_break);
+                    if(tool != null){
+                        ticks = new TimeToBreakBlock().calculate(tool,current_pos);
+                    }
+                    else{
+                        DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                        player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
+                        return;
+                    }
                 }
                 DataHandler.save_int(dataHandler.namespaceKey_Task_Next_Time,data,ticks);
-                DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,current_pos);
                 run_t(player,ticks);
             }
         }.runTaskLater(plugin, time).getTaskId();
