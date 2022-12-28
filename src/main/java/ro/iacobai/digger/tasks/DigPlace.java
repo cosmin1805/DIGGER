@@ -36,15 +36,17 @@ public class DigPlace  {
                 Material material_current_block = current_block.getBlockData().getMaterial();
                 Block hopper = hopper_pos.getBlock();
                 Material material_hopper = hopper.getBlockData().getMaterial();
-                ItemStack tool;
+                ItemStack tool = null;
                 if(material_hopper.equals(Material.HOPPER)){
                     Hopper hopper_data = (Hopper) hopper.getState();
-                    tool = new ro.iacobai.digger.blocks.Hopper().check_inventory_tools_durability(hopper_data);
-                    if(tool == null){
-                        return;
+                    if(material_current_block.getHardness()!=-1 && material_current_block.getHardness() <= 50 && !material_current_block.isAir()){
+                        tool = new ro.iacobai.digger.blocks.Hopper().check_inventory_tools_durability(hopper_data);
+                        if(tool == null){
+                            return;
+                        }
                     }
                     if(use_chest==1) {
-                        boolean chest_exists = new ro.iacobai.digger.blocks.Chest_().exists(chest_pos);
+                        boolean chest_exists = new Chest_().exists(chest_pos);
                         if(!chest_exists)
                         {
                             return;
@@ -54,7 +56,7 @@ public class DigPlace  {
                 else {
                     return;
                 }
-                if(material_current_block.getHardness()!=-1){
+                if(material_current_block.getHardness()!=-1 && material_current_block.getHardness() <= 50 && !material_current_block.isAir() && tool != null){
                     current_block.breakNaturally(tool);
                     if(use_chest==1) {
                         new Chest_().get_nearby_entities(current_pos,chest_pos);
