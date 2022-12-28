@@ -17,8 +17,6 @@ import ro.iacobai.digger.data.DataHandler;
 
 public class DigPlace  {
     DataHandler dataHandler = new DataHandler();
-    DIGGER digger = DIGGER.getPlugin();
-
 
     public void run_t(Player player, int time) {
         PersistentDataContainer data = player.getPersistentDataContainer();
@@ -45,7 +43,6 @@ public class DigPlace  {
                         tool = new ro.iacobai.digger.blocks.Hopper().check_most_efficient(hopper_data,current_pos,use_break);
                         if(tool == null){
                             tool = new ro.iacobai.digger.blocks.Hopper().check_inventory_tools_durability(hopper_data,use_break);
-                            System.out.println(tool);
                             if(tool == null){
                                 DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
                                 player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
@@ -115,7 +112,10 @@ public class DigPlace  {
                         current_pos.setZ(current_pos.getZ()+1);
                     }
                 }
-                int ticks = new TimeToBreakBlock().calculate(tool,current_pos);
+                int ticks= 0;
+                if(tool != null){
+                    ticks = new TimeToBreakBlock().calculate(tool,current_pos);
+                }
                 DataHandler.save_int(dataHandler.namespaceKey_Task_Next_Time,data,ticks);
                 DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,current_pos);
                 run_t(player,ticks);
