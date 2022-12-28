@@ -12,6 +12,7 @@ public class DataHandler {
     //ALL THE "BOOLEANS"
     public NamespacedKey namespacesKey_Pos = new NamespacedKey(DIGGER.getPlugin(),"pos_select");
     public NamespacedKey namespaceKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
+    public NamespacedKey namespaceKey_Use_Break= new NamespacedKey(DIGGER.getPlugin(),"use_break");
     public NamespacedKey namespaceKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
     public NamespacedKey namespaceKey_Task_Running = new NamespacedKey(DIGGER.getPlugin(),"task_running");
     public NamespacedKey namespaceKey_Task_Pause = new NamespacedKey(DIGGER.getPlugin(),"task_pause");

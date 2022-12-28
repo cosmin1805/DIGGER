@@ -35,6 +35,7 @@ public class StatusCommand extends SubCommand {
             player.sendMessage(ChatColor.AQUA+"---------------------");
             on_off_send(dataHandler.namespacesKey_Pos,data,player,"Positions selector: ");
             on_off_send(dataHandler.namespaceKey_Use_Chest,data,player,"Use chest: ");
+            on_off_send(dataHandler.namespaceKey_Use_Break,data,player,"Break tools: ");
             location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1 is: ");
             location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2 is: ");
             location_send(dataHandler.namespaceKey_PosChest,data,player,"Chest pos is: ");

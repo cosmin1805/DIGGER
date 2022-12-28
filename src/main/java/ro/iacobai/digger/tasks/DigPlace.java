@@ -32,6 +32,7 @@ public class DigPlace  {
             @Override
             public void run(){
                 int use_chest = DataHandler.get_bool(dataHandler.namespaceKey_Use_Chest,data);
+                int use_break = DataHandler.get_bool(dataHandler.namespaceKey_Use_Break,data);
                 Location current_pos = DataHandler.get_position(dataHandler.namespacesKey_PosCurrent,data);
                 Block current_block = current_pos.getBlock();
                 Material material_current_block = current_block.getBlockData().getMaterial();
@@ -41,11 +42,15 @@ public class DigPlace  {
                 if(material_hopper.equals(Material.HOPPER)){
                     Hopper hopper_data = (Hopper) hopper.getState();
                     if(material_current_block.getHardness()!=-1 && material_current_block.getHardness() <= 50 && !material_current_block.isAir()){
-                        tool = new ro.iacobai.digger.blocks.Hopper().check_inventory_tools_durability(hopper_data);
+                        tool = new ro.iacobai.digger.blocks.Hopper().check_most_efficient(hopper_data,current_pos,use_break);
                         if(tool == null){
-                            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
-                            player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
-                            return;
+                            tool = new ro.iacobai.digger.blocks.Hopper().check_inventory_tools_durability(hopper_data,use_break);
+                            System.out.println(tool);
+                            if(tool == null){
+                                DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                                player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
+                                return;
+                            }
                         }
                     }
                     if(use_chest==1) {
