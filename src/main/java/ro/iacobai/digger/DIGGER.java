@@ -43,7 +43,7 @@ public final class DIGGER extends JavaPlugin implements Listener {
                 PersistentDataContainer data = player.getPersistentDataContainer();
                 if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1 && DataHandler.get_bool(dataHandler.namespaceKey_Task_Pause,data)==0){
                     DigPlace digPlace = new DigPlace();
-                    digPlace.run_t(player);
+                    digPlace.run_t(player,DataHandler.get_int(dataHandler.namespaceKey_Task_Next_Time,data));
                     System.out.println("Task of " +player.getName()+" resumed!");
                     player.sendMessage(ChatColor.GREEN+"Your Digger Task was resumed!");
                 }
