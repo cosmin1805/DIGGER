@@ -24,13 +24,13 @@ public class DigPlace  {
         Location pos1 = DataHandler.get_position(dataHandler.namespaceKey_Pos1,data);
         Location pos2 = DataHandler.get_position(dataHandler.namespaceKey_Pos2,data);
 
-        int use_chest = DataHandler.get_bool(dataHandler.namespaceKey_Use_Chest,data);
         Location chest_pos = DataHandler.get_position(dataHandler.namespaceKey_PosChest,data);
         Location hopper_pos = DataHandler.get_position(dataHandler.namespaceKey_PosHopper,data);
         DIGGER plugin = DIGGER.getPlugin();
         int ID = new BukkitRunnable(){
             @Override
             public void run(){
+                int use_chest = DataHandler.get_bool(dataHandler.namespaceKey_Use_Chest,data);
                 Location current_pos = DataHandler.get_position(dataHandler.namespacesKey_PosCurrent,data);
                 Block current_block = current_pos.getBlock();
                 Material material_current_block = current_block.getBlockData().getMaterial();
@@ -42,6 +42,8 @@ public class DigPlace  {
                     if(material_current_block.getHardness()!=-1 && material_current_block.getHardness() <= 50 && !material_current_block.isAir()){
                         tool = new ro.iacobai.digger.blocks.Hopper().check_inventory_tools_durability(hopper_data);
                         if(tool == null){
+                            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                            player.sendMessage(ChatColor.RED+"There are no tools in the hopper!");
                             return;
                         }
                     }
@@ -49,11 +51,21 @@ public class DigPlace  {
                         boolean chest_exists = new Chest_().exists(chest_pos);
                         if(!chest_exists)
                         {
+                            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                            player.sendMessage(ChatColor.RED+"The chest is missing!");
+                            return;
+                        }
+                        boolean chest_has_Space = new Chest_().has_space(chest_pos);
+                        if(!chest_has_Space){
+                            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                            player.sendMessage(ChatColor.RED+"The chest has no space left!");
                             return;
                         }
                     }
                 }
                 else {
+                    DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                    player.sendMessage(ChatColor.RED+"The hopper is missing!");
                     return;
                 }
                 if(material_current_block.getHardness()!=-1 && material_current_block.getHardness() <= 50 && !material_current_block.isAir() && tool != null){

@@ -41,7 +41,7 @@ public final class DIGGER extends JavaPlugin implements Listener {
             for(Player player : Bukkit.getOnlinePlayers()){
                 DataHandler dataHandler = new DataHandler();
                 PersistentDataContainer data = player.getPersistentDataContainer();
-                if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1 && DataHandler.get_bool(dataHandler.namespaceKey_Task_Pause,data)==0){
                     DigPlace digPlace = new DigPlace();
                     digPlace.run_t(player);
                     System.out.println("Task of " +player.getName()+" resumed!");

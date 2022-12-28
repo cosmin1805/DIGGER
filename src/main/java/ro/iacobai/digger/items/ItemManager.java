@@ -23,6 +23,13 @@ public class ItemManager implements Listener {
     public void onInteract(PlayerInteractEvent event){
         Action action = event.getAction();
         Player player = event.getPlayer();
+        Block block = event.getClickedBlock();
+        if(block == null)
+        {
+            return;
+        }
+        Location blockLocation = block.getLocation();
+        Material material = block.getBlockData().getMaterial();
         if(action.equals(Action.LEFT_CLICK_BLOCK)||action.equals(Action.RIGHT_CLICK_BLOCK)){
             if(player.getInventory().getItemInMainHand().equals(new ItemStack(Material.STICK))==false)
             {
@@ -45,22 +52,25 @@ public class ItemManager implements Listener {
                 return;
             }
             PersistentDataContainer data = player.getPersistentDataContainer();
-            if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Highlight,data)==1){
-                player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current Highlight with /digger particle !");
-                return;
+            if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Pause,data) == 0){
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Highlight,data)==1){
+                    player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current Highlight with /digger particle !");
+                    return;
+                }
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
+                    player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current digger with /digger cancel or wait for it to finish!");
+                    return;
+                }
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1){
+                    player.sendMessage(ChatColor.RED+"Can't do this action! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
+                    return;
+                }
             }
-            if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
+            else if (!material.equals(Material.CHEST) && !material.equals(Material.HOPPER)){
                 player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current digger with /digger cancel or wait for it to finish!");
                 return;
             }
-            if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1){
-                player.sendMessage(ChatColor.RED+"Can't do this action! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
-                return;
-            }
             if(DataHandler.get_bool(dataHandler.namespacesKey_Pos,data) == 1){
-                Block block = event.getClickedBlock();
-                Location blockLocation = block.getLocation();
-                Material material = block.getBlockData().getMaterial();
                 if (material.equals(Material.CHEST)) {
                         DataHandler.save_position(dataHandler.namespaceKey_PosChest,data,blockLocation);
                         player.sendMessage(ChatColor.AQUA+"---------------------");

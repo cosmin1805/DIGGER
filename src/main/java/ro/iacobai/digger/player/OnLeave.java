@@ -15,7 +15,7 @@ public class OnLeave implements Listener {
     public void onleave(PlayerQuitEvent event){
         Player player = event.getPlayer();
         PersistentDataContainer data = player.getPersistentDataContainer();
-        if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1) {
+        if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1 && DataHandler.get_bool(dataHandler.namespaceKey_Task_Pause,data)==0) {
             Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Id,data));
             System.out.println("Task of " +player.getName()+" canceled!");
         }

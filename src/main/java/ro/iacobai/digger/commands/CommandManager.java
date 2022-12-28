@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class CommandManager implements CommandExecutor {
     DataHandler dataHandler = new DataHandler();
     private ArrayList<SubCommand> subcommands = new ArrayList<>();
+
     public  CommandManager(){
         subcommands.add(new SelectCommand());
         subcommands.add(new ChestCommand());
@@ -25,6 +26,8 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new ConfirmCommand());
         subcommands.add(new CancelCommand());
         subcommands.add(new ParticleCommand());
+        subcommands.add(new ResumeCommand());
+        subcommands.add(new PauseCommand());
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -38,23 +41,19 @@ public class CommandManager implements CommandExecutor {
                 }
                 p.sendMessage(ChatColor.AQUA+"---------------------");
             } else if (args.length > 0) {
-                if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1){
-                    if(args[0].equalsIgnoreCase(getSubcommands().get(3).getName())){
-                        getSubcommands().get(3).perform(p,args);
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1 || DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data) == 1){
+                    String[] blocked_commands= {"select","start"};
+                    for (int i = 0; i < blocked_commands.length; i++){
+                        if(args[0].equalsIgnoreCase(blocked_commands[i])){
+                            if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
+                                p.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
+                            }
+                            else {
+                                p.sendMessage(ChatColor.RED+"Can't run this command! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
+                            }
+                            return true;
+                        }
                     }
-                    if(args[0].equalsIgnoreCase(getSubcommands().get(4).getName())){
-                        getSubcommands().get(4).perform(p,args);
-                    }
-                    else if(args[0].equalsIgnoreCase(getSubcommands().get(5).getName())){
-                        getSubcommands().get(5).perform(p,args);
-                    }
-                    else if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
-                        p.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
-                    }
-                    else {
-                        p.sendMessage(ChatColor.RED+"Can't run this command! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
-                    }
-                    return true;
                 }
                 for (int i = 0; i < getSubcommands().size(); i++){
                     if(args[0].equalsIgnoreCase(getSubcommands().get(i).getName())){

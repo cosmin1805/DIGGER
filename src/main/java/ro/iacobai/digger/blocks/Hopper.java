@@ -15,6 +15,10 @@ public class Hopper {
             {
                 Damageable meta = (Damageable) tool.getItemMeta();
                 Material material = tool.getData().getItemType();
+                if(material.getCreativeCategory().name() != "TOOLS")
+                {
+                    return null;
+                }
                 if(material.getMaxDurability()  < digger.getConfig().getInt("Damage_taken_item") + meta.getDamage())
                 {
                     hopper_data.getInventory().remove(tool);
