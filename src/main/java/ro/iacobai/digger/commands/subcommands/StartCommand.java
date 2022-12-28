@@ -46,7 +46,6 @@ public class StartCommand extends SubCommand {
         player.sendMessage(ChatColor.AQUA+"---------------------");
         location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1 is: ");
         location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2 is: ");
-        player.sendMessage("This will take to finish: "+ ChatColor.GREEN+number_of_blocks*digger.getConfig().getInt("Time")+" seconds");
         player.sendMessage("This will remove : "+ ChatColor.GREEN+number_of_blocks+" blocks");
         player.sendMessage("Confirm this with /digger confirm!");
         player.sendMessage(ChatColor.AQUA+"---------------------");

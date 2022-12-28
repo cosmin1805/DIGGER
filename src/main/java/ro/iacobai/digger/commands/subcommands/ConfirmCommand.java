@@ -50,6 +50,9 @@ public class ConfirmCommand extends SubCommand {
                 DataHandler.change_bool(dataHandler.namespaceKey_Confirm,data,player,null);
                 DataHandler.change_bool(dataHandler.namespaceKey_Task_Running,data,player,null);
                 player.sendMessage(ChatColor.GREEN+"DIGGER HAS BEEN CANCELED!");
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Pause,data)==1) {
+                    DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                }
                 return;
             }
             //start
