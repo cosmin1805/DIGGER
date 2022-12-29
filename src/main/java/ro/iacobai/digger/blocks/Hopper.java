@@ -5,15 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import ro.iacobai.digger.DIGGER;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-import static it.unimi.dsi.fastutil.objects.ObjectArrays.swap;
 
 public class Hopper {
     DIGGER digger = DIGGER.getPlugin();
@@ -75,7 +69,7 @@ public class Hopper {
     {
         Damageable meta = (Damageable) tool.getItemMeta();
         Material material = tool.getData().getItemType();
-        if(material.getMaxDurability()  < digger.getConfig().getInt("Damage_taken_item") + meta.getDamage() && material.getCreativeCategory().name() == "TOOLS")
+        if(material.getMaxDurability()  <= digger.getConfig().getInt("Damage_taken_item") + meta.getDamage() && material.getCreativeCategory().name() == "TOOLS")
         {
             if(use_break == 1){
                 hopper_data.getInventory().remove(tool);

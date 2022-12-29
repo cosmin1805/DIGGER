@@ -22,7 +22,7 @@ public class TimeToBreakBlock {
             damage/=100;
         }
         if(damage > 1){
-            return  20;
+            return  0;
         }
         return  Math.round(1/damage);
     }

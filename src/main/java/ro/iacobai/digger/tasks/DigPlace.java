@@ -17,7 +17,7 @@ import ro.iacobai.digger.data.DataHandler;
 
 public class DigPlace  {
     DataHandler dataHandler = new DataHandler();
-
+    DIGGER digger = DIGGER.getPlugin();
     public void run_t(Player player, int time) {
         PersistentDataContainer data = player.getPersistentDataContainer();
         Location pos1 = DataHandler.get_position(dataHandler.namespaceKey_Pos1,data);
@@ -126,6 +126,7 @@ public class DigPlace  {
                         return;
                     }
                 }
+                ticks+=digger.getConfig().getInt("Time_added")*20;
                 DataHandler.save_int(dataHandler.namespaceKey_Task_Next_Time,data,ticks);
                 run_t(player,ticks);
             }
