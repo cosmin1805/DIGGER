@@ -114,7 +114,7 @@ public class DigPlace  {
                 }
                 DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,current_pos);
                 int ticks= 0;
-                if(tool != null){
+                if(current_pos.getBlock().getBlockData().getMaterial().getHardness()!=-1 && current_pos.getBlock().getBlockData().getMaterial().getHardness() <= 50 && !current_pos.getBlock().getBlockData().getMaterial().isAir() && tool != null){
                     Hopper hopper_data = (Hopper) hopper.getState();
                     tool = new ro.iacobai.digger.blocks.Hopper().check_most_efficient(hopper_data,current_pos,use_break);
                     if(tool != null){
