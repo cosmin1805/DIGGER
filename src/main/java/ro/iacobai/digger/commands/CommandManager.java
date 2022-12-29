@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
+import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.commands.subcommands.*;
 import ro.iacobai.digger.data.DataHandler;
 
@@ -60,6 +61,14 @@ public class CommandManager implements CommandExecutor {
                     if(args[0].equalsIgnoreCase(getSubcommands().get(i).getName())){
                         getSubcommands().get(i).perform(p,args);
                     }
+                }
+            }
+        }else {
+            if(args.length > 0){
+                if(args[0].equalsIgnoreCase("reload")){
+                    DIGGER plugin = DIGGER.getPlugin();
+                    System.out.println("RELOADING PLUGIN CONFIG!");
+                    plugin.reloadConfig();
                 }
             }
         }
