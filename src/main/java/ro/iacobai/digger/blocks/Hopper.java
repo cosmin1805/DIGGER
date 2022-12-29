@@ -45,7 +45,7 @@ public class Hopper {
             {
                     Damageable meta = (Damageable) tool.getItemMeta();
                     Material material = tool.getData().getItemType();
-                    if(material.getMaxDurability()  < digger.getConfig().getInt("Damage_taken_item") + meta.getDamage() && material.getCreativeCategory().name() == "TOOLS" && use_break == 1)
+                    if(material.getMaxDurability()  <= digger.getConfig().getInt("Damage_taken_item") + meta.getDamage() && material.getCreativeCategory().name() == "TOOLS" && use_break == 1)
                     {
                         int time = new TimeToBreakBlock().calculate(tool,current_pos);
                         if(time < time_small)
