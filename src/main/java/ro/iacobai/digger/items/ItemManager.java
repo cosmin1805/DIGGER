@@ -53,18 +53,25 @@ public class ItemManager implements Listener {
             }
             PersistentDataContainer data = player.getPersistentDataContainer();
             if(DataHandler.get_bool(dataHandler.namespaceKey_Pause,data) == 0){
-                player.sendMessage(ChatColor.AQUA+"---------------------");
                 if(DataHandler.get_bool(dataHandler.namespaceKey_Highlight,data)==1){
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                     player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current Highlight with /digger particle !");
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
+                    return;
                 }
                 else if(DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                     player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current digger with /digger cancel or wait for it to finish!");
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
+                    return;
                 }
                 else if(DataHandler.get_bool(dataHandler.namespaceKey_Await_Confirm,data) == 1){
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                     player.sendMessage(ChatColor.RED+"Can't do this action! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
+                    return;
                 }
-                player.sendMessage(ChatColor.AQUA+"---------------------");
-                return;
+
             }
             else if (!material.equals(Material.CHEST) && !material.equals(Material.HOPPER)){
                 player.sendMessage(ChatColor.AQUA+"---------------------");
