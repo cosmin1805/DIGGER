@@ -2,7 +2,6 @@ package ro.iacobai.digger.blocks;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Furnace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;

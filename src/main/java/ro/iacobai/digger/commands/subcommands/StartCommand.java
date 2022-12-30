@@ -16,7 +16,6 @@ import static ro.iacobai.digger.commands.subcommands.StatusCommand.location_send
 
 
 public class StartCommand extends SubCommand {
-    DIGGER digger = DIGGER.getPlugin();
     DataHandler dataHandler = new DataHandler();
     @Override
     public String getName() {

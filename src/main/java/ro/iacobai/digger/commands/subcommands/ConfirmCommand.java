@@ -38,11 +38,6 @@ public class ConfirmCommand extends SubCommand {
         //
         PersistentDataContainer data = player.getPersistentDataContainer();
         Location pos1 = DataHandler.get_position(dataHandler.namespaceKey_Pos1,data);
-        Location pos2 = DataHandler.get_position(dataHandler.namespaceKey_Pos2,data);
-
-        Location chest_pos = DataHandler.get_position(dataHandler.namespaceKey_PosChest,data);
-        Location hopper_pos = DataHandler.get_position(dataHandler.namespaceKey_PosHopper,data);
-        DIGGER plugin = DIGGER.getPlugin();
         //
         if(DataHandler.get_bool(dataHandler.namespaceKey_Await_Confirm,data) == 1){
             if(DataHandler.get_bool(dataHandler.namespaceKey_Running,data) == 1){
