@@ -135,8 +135,8 @@ public class DigPlace  {
                         player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
                         return;
                     }
+                    ticks+=digger.getConfig().getInt("Time_added")*20;
                 }
-                ticks+=digger.getConfig().getInt("Time_added")*20;
                 DataHandler.save_int(dataHandler.namespaceKey_Task_Next_Time,data,ticks);
                 run_t(player,ticks);
             }
