@@ -13,7 +13,9 @@ import java.util.List;
 public class Particles {
     DataHandler dataHandler = new DataHandler();
     public void run_t(Player player) {
+        player.sendMessage(ChatColor.AQUA+"---------------------");
         player.sendMessage(ChatColor.GREEN+"The particle highlight has started!");
+        player.sendMessage(ChatColor.AQUA+"---------------------");
         PersistentDataContainer data = player.getPersistentDataContainer();
         Location pos1 = DataHandler.get_position(dataHandler.namespaceKey_Pos1,data);
         Location pos2 = DataHandler.get_position(dataHandler.namespaceKey_Pos2,data);
@@ -38,7 +40,9 @@ public class Particles {
             @Override
             public void run(){
                 Bukkit.getScheduler().cancelTask(ID);
+                player.sendMessage(ChatColor.AQUA+"---------------------");
                 player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
+                player.sendMessage(ChatColor.AQUA+"---------------------");
                 DataHandler.change_bool(dataHandler.namespaceKey_Highlight,data,player,null);
             }
         }.runTaskLater(plugin, 120*20).getTaskId();

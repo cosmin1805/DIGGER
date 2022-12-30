@@ -30,10 +30,14 @@ public class PauseCommand extends SubCommand {
         if(DataHandler.get_bool(dataHandler.namespaceKey_Pause,data)==0 && DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
             Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Id,data));
             DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.GREEN+"The digger has been paused!");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
         }
         else {
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.RED+"Nothing to pause or the digger is already paused!");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
         }
     }
 

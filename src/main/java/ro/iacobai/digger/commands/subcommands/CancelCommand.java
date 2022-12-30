@@ -28,7 +28,9 @@ public class CancelCommand extends SubCommand {
         PersistentDataContainer data = player.getPersistentDataContainer();
         if(DataHandler.get_bool(dataHandler.namespaceKey_Await_Confirm,data) == 1){
             DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.GREEN+"You canceled your /digger start or /digger cancel !");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
         }
         else if (DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
                 DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
@@ -37,7 +39,9 @@ public class CancelCommand extends SubCommand {
                 player.sendMessage(ChatColor.AQUA+"---------------------");
         }
         else {
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.RED+"Nothing to cancel !");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
         }
     }
 }

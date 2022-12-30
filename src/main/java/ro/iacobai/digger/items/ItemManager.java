@@ -53,21 +53,23 @@ public class ItemManager implements Listener {
             }
             PersistentDataContainer data = player.getPersistentDataContainer();
             if(DataHandler.get_bool(dataHandler.namespaceKey_Pause,data) == 0){
+                player.sendMessage(ChatColor.AQUA+"---------------------");
                 if(DataHandler.get_bool(dataHandler.namespaceKey_Highlight,data)==1){
                     player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current Highlight with /digger particle !");
-                    return;
                 }
-                if(DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
+                else if(DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
                     player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current digger with /digger cancel or wait for it to finish!");
-                    return;
                 }
-                if(DataHandler.get_bool(dataHandler.namespaceKey_Await_Confirm,data) == 1){
+                else if(DataHandler.get_bool(dataHandler.namespaceKey_Await_Confirm,data) == 1){
                     player.sendMessage(ChatColor.RED+"Can't do this action! Please confirm yor current selection with /digger confirm or cancel it with /digger cancel !");
-                    return;
                 }
+                player.sendMessage(ChatColor.AQUA+"---------------------");
+                return;
             }
             else if (!material.equals(Material.CHEST) && !material.equals(Material.HOPPER)){
+                player.sendMessage(ChatColor.AQUA+"---------------------");
                 player.sendMessage(ChatColor.RED+"Can't do this action! Please cancel your current digger with /digger cancel or wait for it to finish!");
+                player.sendMessage(ChatColor.AQUA+"---------------------");
                 return;
             }
             if(DataHandler.get_bool(dataHandler.namespacesKey_Pos_Select,data) == 1){
@@ -89,11 +91,15 @@ public class ItemManager implements Listener {
                 }
                 if(action.equals(Action.LEFT_CLICK_BLOCK)){
                     DataHandler.save_position(dataHandler.namespaceKey_Pos1,data,blockLocation);
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                     StatusCommand.location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1: ");
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                 }
                 else {
                     DataHandler.save_position(dataHandler.namespaceKey_Pos2,data,blockLocation);
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                     StatusCommand.location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2: ");
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                 }
             }
         }

@@ -34,7 +34,9 @@ public class ParticleCommand extends SubCommand {
             DataHandler.change_bool(dataHandler.namespaceKey_Highlight,data,player,null);
         }
         else {
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Particle_Id,data));
             DataHandler.change_bool(dataHandler.namespaceKey_Highlight,data,player,null);
         }

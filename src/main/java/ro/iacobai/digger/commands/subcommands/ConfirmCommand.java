@@ -44,14 +44,18 @@ public class ConfirmCommand extends SubCommand {
                 Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Id,data));
                 DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
                 DataHandler.change_bool(dataHandler.namespaceKey_Running,data,player,null);
+                player.sendMessage(ChatColor.AQUA+"---------------------");
                 player.sendMessage(ChatColor.GREEN+"DIGGER HAS BEEN CANCELED!");
+                player.sendMessage(ChatColor.AQUA+"---------------------");
                 if(DataHandler.get_bool(dataHandler.namespaceKey_Pause,data)==1) {
                     DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
                 }
                 return;
             }
             //start
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.GREEN+"DIGGER HAS STARTED!");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             DigPlace digPlace = new DigPlace();
             DataHandler.change_bool(dataHandler.namespaceKey_Running,data,player,null);
             DataHandler.save_position(dataHandler.namespacesKey_PosCurrent,data,pos1);
@@ -59,7 +63,9 @@ public class ConfirmCommand extends SubCommand {
             DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
             DataHandler.save_int(dataHandler.namespaceKey_Task_Next_Time,data,digger.getConfig().getInt("Time") *20);
         }else {
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.RED+"First do /digger start or /digger stop !");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
         }
     }
 }

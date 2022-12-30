@@ -31,10 +31,14 @@ public class ResumeCommand extends SubCommand {
         if(DataHandler.get_bool(dataHandler.namespaceKey_Pause,data)==1 && DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
             DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
             digPlace.run_t(player,DataHandler.get_int(dataHandler.namespaceKey_Task_Next_Time,data));
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.GREEN+"Digger resumed!");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
         }
         else {
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             player.sendMessage(ChatColor.RED+"Nothing to resume!");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
         }
     }
 }

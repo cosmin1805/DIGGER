@@ -40,7 +40,9 @@ public final class DIGGER extends JavaPlugin implements Listener {
                     DigPlace digPlace = new DigPlace();
                     digPlace.run_t(player,DataHandler.get_int(dataHandler.namespaceKey_Task_Next_Time,data));
                     System.out.println("Task of " +player.getName()+" resumed!");
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                     player.sendMessage(ChatColor.GREEN+"Your Digger Task was resumed!");
+                    player.sendMessage(ChatColor.AQUA+"---------------------");
                 }
                 if(DataHandler.get_bool(dataHandler.namespaceKey_Highlight,data)==1){
                     Particles particles = new Particles();

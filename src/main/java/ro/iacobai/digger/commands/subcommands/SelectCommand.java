@@ -1,6 +1,7 @@
 package ro.iacobai.digger.commands.subcommands;
 
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 
@@ -29,8 +30,9 @@ public class SelectCommand extends SubCommand{
     @Override
     public void perform(Player player, String[] args) {
         PersistentDataContainer data = player.getPersistentDataContainer();
+        player.sendMessage(ChatColor.AQUA+"---------------------");
         DataHandler.change_bool(dataHandler.namespacesKey_Pos_Select,data,player,"Digger position selector ");
-
+        player.sendMessage(ChatColor.AQUA+"---------------------");
     }
 }
 

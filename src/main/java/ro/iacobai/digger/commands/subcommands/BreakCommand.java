@@ -1,5 +1,6 @@
 package ro.iacobai.digger.commands.subcommands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import ro.iacobai.digger.commands.SubCommand;
@@ -25,6 +26,8 @@ public class BreakCommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         PersistentDataContainer data = player.getPersistentDataContainer();
+        player.sendMessage(ChatColor.AQUA+"---------------------");
         DataHandler.change_bool(dataHandler.namespaceKey_Use_Break,data,player,"Digger break tool: ");
+        player.sendMessage(ChatColor.AQUA+"---------------------");
     }
 }
