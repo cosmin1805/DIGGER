@@ -5,7 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 import ro.iacobai.digger.commands.SubCommand;
 import ro.iacobai.digger.data.DataHandler;
 
@@ -33,17 +32,17 @@ public class StatusCommand extends SubCommand {
     public void perform(Player player, String[] args) {
             PersistentDataContainer data = player.getPersistentDataContainer();
             player.sendMessage(ChatColor.AQUA+"---------------------");
-            on_off_send(dataHandler.namespacesKey_Pos,data,player,"Positions selector: ");
+            on_off_send(dataHandler.namespacesKey_Pos_Select,data,player,"Positions selector: ");
             on_off_send(dataHandler.namespaceKey_Use_Chest,data,player,"Use chest: ");
             on_off_send(dataHandler.namespaceKey_Use_Break,data,player,"Break tools: ");
             location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1 is: ");
             location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2 is: ");
             location_send(dataHandler.namespaceKey_PosChest,data,player,"Chest pos is: ");
             location_send(dataHandler.namespaceKey_PosHopper,data,player,"Hopper pos is: ");
-            on_off_send(dataHandler.namespaceKey_Task_Running,data,player,"Digger running: ");
-            on_off_send(dataHandler.namespaceKey_Task_Pause,data,player,"Digger pause: ");
+            on_off_send(dataHandler.namespaceKey_Running,data,player,"Digger running: ");
+            on_off_send(dataHandler.namespaceKey_Pause,data,player,"Digger pause: ");
             location_send(dataHandler.namespacesKey_PosCurrent,data,player,"Current pos is: ");
-            double number_of_blocks = DataHandler.get_double(dataHandler.namespaceKey_Task_Blocks,data);
+            double number_of_blocks = DataHandler.get_double(dataHandler.namespaceKey_Blocks_Remaining,data);
             player.sendMessage("Blocks remaining: "+ChatColor.GREEN+number_of_blocks+" blocks");
             player.sendMessage(ChatColor.AQUA+"---------------------");
     }

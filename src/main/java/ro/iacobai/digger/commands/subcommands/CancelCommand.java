@@ -26,12 +26,12 @@ public class CancelCommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         PersistentDataContainer data = player.getPersistentDataContainer();
-        if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1){
-            DataHandler.change_bool(dataHandler.namespaceKey_Confirm,data,player,null);
+        if(DataHandler.get_bool(dataHandler.namespaceKey_Await_Confirm,data) == 1){
+            DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
             player.sendMessage(ChatColor.GREEN+"You canceled your /digger start or /digger cancel !");
         }
-        else if (DataHandler.get_bool(dataHandler.namespaceKey_Task_Running ,data)==1){
-                DataHandler.change_bool(dataHandler.namespaceKey_Confirm,data,player,null);
+        else if (DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
+                DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
                 player.sendMessage(ChatColor.AQUA+"---------------------");
                 player.sendMessage("Confirm this with /digger confirm or cancel it with /digger cancel !");
                 player.sendMessage(ChatColor.AQUA+"---------------------");

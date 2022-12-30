@@ -43,11 +43,11 @@ public class CommandManager implements CommandExecutor {
                 }
                 p.sendMessage(ChatColor.AQUA+"---------------------");
             } else if (args.length > 0) {
-                if(DataHandler.get_bool(dataHandler.namespaceKey_Confirm,data) == 1 || DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data) == 1){
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Await_Confirm,data) == 1 || DataHandler.get_bool(dataHandler.namespaceKey_Running,data) == 1){
                     String[] blocked_commands= {"select","start"};
                     for (int i = 0; i < blocked_commands.length; i++){
                         if(args[0].equalsIgnoreCase(blocked_commands[i])){
-                            if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
+                            if(DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
                                 p.sendMessage(ChatColor.RED+"Can't run this command! Please cancel your current digger with /digger cancel or wait for it to finish!");
                             }
                             else {

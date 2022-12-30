@@ -23,7 +23,7 @@ public class Particles {
         int ID = new BukkitRunnable(){
             @Override
             public void run(){
-                if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Highlight,data)==0){
+                if(DataHandler.get_bool(dataHandler.namespaceKey_Highlight,data)==0){
                     this.cancel();
                 }
                 for (Location element : hollowCube) {
@@ -39,7 +39,7 @@ public class Particles {
             public void run(){
                 Bukkit.getScheduler().cancelTask(ID);
                 player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
-                DataHandler.change_bool(dataHandler.namespaceKey_Task_Highlight,data,player,null);
+                DataHandler.change_bool(dataHandler.namespaceKey_Highlight,data,player,null);
             }
         }.runTaskLater(plugin, 120*20).getTaskId();
         DataHandler.save_int(dataHandler.namespaceKey_Task_Particle_Id,data,ID2);

@@ -28,8 +28,8 @@ public class ResumeCommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         PersistentDataContainer data = player.getPersistentDataContainer();
-        if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Pause,data)==1 && DataHandler.get_bool(dataHandler.namespaceKey_Task_Running,data)==1){
-            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+        if(DataHandler.get_bool(dataHandler.namespaceKey_Pause,data)==1 && DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==1){
+            DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
             digPlace.run_t(player,DataHandler.get_int(dataHandler.namespaceKey_Task_Next_Time,data));
             player.sendMessage(ChatColor.GREEN+"Digger resumed!");
         }

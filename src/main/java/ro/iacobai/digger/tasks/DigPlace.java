@@ -42,7 +42,7 @@ public class DigPlace  {
                     if(material_current_block.getHardness()!=-1 && material_current_block.getHardness() <= 50 && !material_current_block.isAir()){
                         tool = new ro.iacobai.digger.blocks.Hopper().check_most_efficient(hopper_data,current_pos,use_break);
                         if(tool == null){
-                            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                            DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
                             player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
                             return;
                         }
@@ -54,20 +54,20 @@ public class DigPlace  {
                         boolean chest_exists = new Chest_().exists(chest_pos);
                         if(!chest_exists)
                         {
-                            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                            DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
                             player.sendMessage(ChatColor.RED+"The chest is missing! So digger was paused!");
                             return;
                         }
                         boolean chest_has_Space = new Chest_().has_space(chest_pos);
                         if(!chest_has_Space){
-                            DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                            DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
                             player.sendMessage(ChatColor.RED+"The chest has no space left! So digger was paused!");
                             return;
                         }
                     }
                 }
                 else {
-                    DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                    DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
                     player.sendMessage(ChatColor.RED+"The hopper is missing! So digger was paused!");
                     return;
                 }
@@ -77,11 +77,11 @@ public class DigPlace  {
                         new Chest_().get_nearby_entities(current_pos,chest_pos);
                     }
                 }
-                double blocks = DataHandler.get_double(dataHandler.namespaceKey_Task_Blocks,data) - 1;
-                DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,blocks);
+                double blocks = DataHandler.get_double(dataHandler.namespaceKey_Blocks_Remaining,data) - 1;
+                DataHandler.save_double(dataHandler.namespaceKey_Blocks_Remaining,data,blocks);
                 //STOP IF CURRENT POS IS POS2
                 if(current_pos.getX()==pos2.getX() && current_pos.getY()==pos2.getY() && current_pos.getZ()==pos2.getZ()) {
-                    DataHandler.change_bool(dataHandler.namespaceKey_Task_Running,data,player,null);
+                    DataHandler.change_bool(dataHandler.namespaceKey_Running,data,player,null);
                     player.sendMessage(ChatColor.GREEN+"Digger has finished!");
                     return;
                 }
@@ -121,7 +121,7 @@ public class DigPlace  {
                         ticks = new TimeToBreakBlock().calculate(tool,current_pos);
                     }
                     else{
-                        DataHandler.change_bool(dataHandler.namespaceKey_Task_Pause,data,player,null);
+                        DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
                         player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
                         return;
                     }

@@ -10,24 +10,24 @@ import ro.iacobai.digger.DIGGER;
 public class DataHandler {
 
     //ALL THE "BOOLEANS"
-    public NamespacedKey namespacesKey_Pos = new NamespacedKey(DIGGER.getPlugin(),"pos_select");
-    public NamespacedKey namespaceKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
-    public NamespacedKey namespaceKey_Use_Break= new NamespacedKey(DIGGER.getPlugin(),"use_break");
-    public NamespacedKey namespaceKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
-    public NamespacedKey namespaceKey_Task_Running = new NamespacedKey(DIGGER.getPlugin(),"task_running");
-    public NamespacedKey namespaceKey_Task_Pause = new NamespacedKey(DIGGER.getPlugin(),"task_pause");
-    public NamespacedKey namespaceKey_Task_Highlight= new NamespacedKey(DIGGER.getPlugin(),"task_highlight");
+    public NamespacedKey namespacesKey_Pos_Select = new NamespacedKey(DIGGER.getPlugin(),"digger_pos_select");
+    public NamespacedKey namespaceKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"digger_use_chest");
+    public NamespacedKey namespaceKey_Use_Break= new NamespacedKey(DIGGER.getPlugin(),"digger_use_break");
+    public NamespacedKey namespaceKey_Await_Confirm = new NamespacedKey(DIGGER.getPlugin(),"digger_await_confirm");
+    public NamespacedKey namespaceKey_Running = new NamespacedKey(DIGGER.getPlugin(),"digger_running");
+    public NamespacedKey namespaceKey_Pause = new NamespacedKey(DIGGER.getPlugin(),"digger_pause");
+    public NamespacedKey namespaceKey_Highlight = new NamespacedKey(DIGGER.getPlugin(),"digger_highlight");
     //ALL THE LOCATIONS
-    public NamespacedKey namespaceKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
-    public NamespacedKey namespaceKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
-    public NamespacedKey namespaceKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
-    public NamespacedKey namespaceKey_PosHopper = new NamespacedKey(DIGGER.getPlugin(),"hopper_pos");
-    public NamespacedKey namespacesKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"current_pos");
+    public NamespacedKey namespaceKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"digger_pos1");
+    public NamespacedKey namespaceKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"digger_pos2");
+    public NamespacedKey namespaceKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"digger_chest_pos");
+    public NamespacedKey namespaceKey_PosHopper = new NamespacedKey(DIGGER.getPlugin(),"digger_hopper_pos");
+    public NamespacedKey namespacesKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"digger_current_pos");
     //ALL THE INTEGERS AND DOUBLE DATA
-    public NamespacedKey namespaceKey_Task_Blocks = new NamespacedKey(DIGGER.getPlugin(),"task_blocks");
-    public NamespacedKey namespaceKey_Task_Next_Time = new NamespacedKey(DIGGER.getPlugin(),"task_next_block_time");
-    public NamespacedKey namespaceKey_Task_Id = new NamespacedKey(DIGGER.getPlugin(),"task_id");
-    public NamespacedKey namespaceKey_Task_Particle_Id = new NamespacedKey(DIGGER.getPlugin(),"task_particle_id");
+    public NamespacedKey namespaceKey_Blocks_Remaining = new NamespacedKey(DIGGER.getPlugin(),"digger_blocks_remaining");
+    public NamespacedKey namespaceKey_Task_Next_Time = new NamespacedKey(DIGGER.getPlugin(),"digger_next_block_time");
+    public NamespacedKey namespaceKey_Task_Id = new NamespacedKey(DIGGER.getPlugin(),"digger_id");
+    public NamespacedKey namespaceKey_Task_Particle_Id = new NamespacedKey(DIGGER.getPlugin(),"digger_particle_id");
 
     public static void change_bool(NamespacedKey namespacedKey, PersistentDataContainer data, Player player, String message) {
         if (!data.has(namespacedKey, PersistentDataType.INTEGER)) {
@@ -94,5 +94,27 @@ public class DataHandler {
         }
         int value = data.get(namespacedKey, PersistentDataType.INTEGER);
         return value;
+    }
+
+    public void delete_old_data(){
+        //ALL THE "BOOLEANS"
+        NamespacedKey namespacesKey_Pos = new NamespacedKey(DIGGER.getPlugin(),"pos_select");
+        NamespacedKey namespaceKey_Use_Chest = new NamespacedKey(DIGGER.getPlugin(),"use_chest");
+        NamespacedKey namespaceKey_Use_Break= new NamespacedKey(DIGGER.getPlugin(),"use_break");
+        NamespacedKey namespaceKey_Confirm = new NamespacedKey(DIGGER.getPlugin(),"task_await_confirm");
+        NamespacedKey namespaceKey_Task_Running = new NamespacedKey(DIGGER.getPlugin(),"task_running");
+        NamespacedKey namespaceKey_Task_Pause = new NamespacedKey(DIGGER.getPlugin(),"task_pause");
+        NamespacedKey namespaceKey_Task_Highlight= new NamespacedKey(DIGGER.getPlugin(),"task_highlight");
+        //ALL THE LOCATIONS
+        NamespacedKey namespaceKey_Pos1 = new NamespacedKey(DIGGER.getPlugin(),"task_pos1");
+        NamespacedKey namespaceKey_Pos2 = new NamespacedKey(DIGGER.getPlugin(),"task_pos2");
+        NamespacedKey namespaceKey_PosChest = new NamespacedKey(DIGGER.getPlugin(),"chest_pos");
+        NamespacedKey namespaceKey_PosHopper = new NamespacedKey(DIGGER.getPlugin(),"hopper_pos");
+        NamespacedKey namespacesKey_PosCurrent = new NamespacedKey(DIGGER.getPlugin(),"current_pos");
+        //ALL THE INTEGERS AND DOUBLE DATA
+        NamespacedKey namespaceKey_Task_Blocks = new NamespacedKey(DIGGER.getPlugin(),"task_blocks");
+        NamespacedKey namespaceKey_Task_Next_Time = new NamespacedKey(DIGGER.getPlugin(),"task_next_block_time");
+        NamespacedKey namespaceKey_Task_Id = new NamespacedKey(DIGGER.getPlugin(),"task_id");
+        NamespacedKey namespaceKey_Task_Particle_Id = new NamespacedKey(DIGGER.getPlugin(),"task_particle_id");
     }
 }

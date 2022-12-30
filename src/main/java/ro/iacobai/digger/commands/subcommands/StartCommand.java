@@ -42,14 +42,14 @@ public class StartCommand extends SubCommand {
         int l = (int)(abs(abs(pos1.getX()) - abs(pos2.getX())))+1;
         int w = (int)(abs(abs(pos1.getZ()) - abs(pos2.getZ())))+1;
         double number_of_blocks = h*l*w;
-        DataHandler.save_double(dataHandler.namespaceKey_Task_Blocks,data,number_of_blocks);
+        DataHandler.save_double(dataHandler.namespaceKey_Blocks_Remaining,data,number_of_blocks);
         player.sendMessage(ChatColor.AQUA+"---------------------");
         location_send(dataHandler.namespaceKey_Pos1,data,player,"Pos1 is: ");
         location_send(dataHandler.namespaceKey_Pos2,data,player,"Pos2 is: ");
         player.sendMessage("This will remove : "+ ChatColor.GREEN+number_of_blocks+" blocks");
         player.sendMessage("Confirm this with /digger confirm!");
         player.sendMessage(ChatColor.AQUA+"---------------------");
-        DataHandler.change_bool(dataHandler.namespaceKey_Confirm,data,player,null);
+        DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
 
     }
 }

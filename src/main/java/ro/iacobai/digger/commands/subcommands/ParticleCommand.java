@@ -28,15 +28,15 @@ public class ParticleCommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         PersistentDataContainer data = player.getPersistentDataContainer();
-        if(DataHandler.get_bool(dataHandler.namespaceKey_Task_Highlight,data)==0){
+        if(DataHandler.get_bool(dataHandler.namespaceKey_Highlight,data)==0){
             Particles particles = new Particles();
             particles.run_t(player);
-            DataHandler.change_bool(dataHandler.namespaceKey_Task_Highlight,data,player,null);
+            DataHandler.change_bool(dataHandler.namespaceKey_Highlight,data,player,null);
         }
         else {
             player.sendMessage(ChatColor.RED+"The particle highlight has stopped!");
             Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Particle_Id,data));
-            DataHandler.change_bool(dataHandler.namespaceKey_Task_Highlight,data,player,null);
+            DataHandler.change_bool(dataHandler.namespaceKey_Highlight,data,player,null);
         }
 
     }
