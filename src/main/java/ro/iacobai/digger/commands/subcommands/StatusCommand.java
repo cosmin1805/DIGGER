@@ -44,6 +44,7 @@ public class StatusCommand extends SubCommand {
             location_send(dataHandler.namespacesKey_PosCurrent,data,player,"Current pos is: ");
             double number_of_blocks = DataHandler.get_double(dataHandler.namespaceKey_Blocks_Remaining,data);
             player.sendMessage("Blocks remaining: "+ChatColor.GREEN+number_of_blocks+" blocks");
+            player.sendMessage("Last message: "+ChatColor.GREEN+DataHandler.get_string(dataHandler.namespaceKey_Task_Last_Message,data));
             player.sendMessage(ChatColor.AQUA+"---------------------");
     }
     public static void on_off_send(NamespacedKey namespacedKey,PersistentDataContainer data,Player player,String message){

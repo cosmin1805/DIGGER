@@ -28,6 +28,8 @@ public class DataHandler {
     public NamespacedKey namespaceKey_Task_Next_Time = new NamespacedKey(DIGGER.getPlugin(),"digger_next_block_time");
     public NamespacedKey namespaceKey_Task_Id = new NamespacedKey(DIGGER.getPlugin(),"digger_id");
     public NamespacedKey namespaceKey_Task_Particle_Id = new NamespacedKey(DIGGER.getPlugin(),"digger_particle_id");
+    //STRING
+    public NamespacedKey namespaceKey_Task_Last_Message= new NamespacedKey(DIGGER.getPlugin(),"digger_last_message");
 
     public static void change_bool(NamespacedKey namespacedKey, PersistentDataContainer data, Player player, String message) {
         if (!data.has(namespacedKey, PersistentDataType.INTEGER)) {
@@ -95,7 +97,17 @@ public class DataHandler {
         int value = data.get(namespacedKey, PersistentDataType.INTEGER);
         return value;
     }
-
+    public static void save_string(NamespacedKey namespacedKey, PersistentDataContainer data,String value){
+        data.set(namespacedKey, PersistentDataType.STRING, value);
+    }
+    public static String get_string(NamespacedKey namespacedKey, PersistentDataContainer data){
+        if (!data.has(namespacedKey, PersistentDataType.STRING)) {
+            save_string(namespacedKey,data,"");
+            return "";
+        }
+        String value = data.get(namespacedKey, PersistentDataType.STRING);
+        return value;
+    }
     public void delete_old_data(){
         //ALL THE "BOOLEANS"
         NamespacedKey namespacesKey_Pos = new NamespacedKey(DIGGER.getPlugin(),"pos_select");

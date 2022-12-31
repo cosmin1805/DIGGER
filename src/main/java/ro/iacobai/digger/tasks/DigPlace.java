@@ -46,6 +46,7 @@ public class DigPlace  {
                             player.sendMessage(ChatColor.AQUA+"---------------------");
                             player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
                             player.sendMessage(ChatColor.AQUA+"---------------------");
+                            DataHandler.save_string(dataHandler.namespaceKey_Task_Last_Message,data,"There are no tools in the hopper! So digger was paused!");
                             return;
                         }
                         else {
@@ -60,6 +61,7 @@ public class DigPlace  {
                             player.sendMessage(ChatColor.AQUA+"---------------------");
                             player.sendMessage(ChatColor.RED+"The chest is missing! So digger was paused!");
                             player.sendMessage(ChatColor.AQUA+"---------------------");
+                            DataHandler.save_string(dataHandler.namespaceKey_Task_Last_Message,data,"The chest is missing! So digger was paused!");
                             return;
                         }
                         boolean chest_has_Space = new Chest_().has_space(chest_pos);
@@ -68,6 +70,7 @@ public class DigPlace  {
                             player.sendMessage(ChatColor.AQUA+"---------------------");
                             player.sendMessage(ChatColor.RED+"The chest has no space left! So digger was paused!");
                             player.sendMessage(ChatColor.AQUA+"---------------------");
+                            DataHandler.save_string(dataHandler.namespaceKey_Task_Last_Message,data,"The chest has no space left! So digger was paused!");
                             return;
                         }
                     }
@@ -77,6 +80,7 @@ public class DigPlace  {
                     player.sendMessage(ChatColor.AQUA+"---------------------");
                     player.sendMessage(ChatColor.RED+"The hopper is missing! So digger was paused!");
                     player.sendMessage(ChatColor.AQUA+"---------------------");
+                    DataHandler.save_string(dataHandler.namespaceKey_Task_Last_Message,data,"The hopper is missing! So digger was paused!");
                     return;
                 }
                 if(material_current_block.getHardness()!=-1 && material_current_block.getHardness() <= 50 && !material_current_block.isAir() && tool != null){
@@ -93,6 +97,7 @@ public class DigPlace  {
                     player.sendMessage(ChatColor.AQUA+"---------------------");
                     player.sendMessage(ChatColor.GREEN+"Digger has finished!");
                     player.sendMessage(ChatColor.AQUA+"---------------------");
+                    DataHandler.save_string(dataHandler.namespaceKey_Task_Last_Message,data,"Digger has finished!");
                     return;
                 }
                 //MOKVE THE CURRENT BLOCK
@@ -132,12 +137,16 @@ public class DigPlace  {
                     }
                     else{
                         DataHandler.change_bool(dataHandler.namespaceKey_Pause,data,player,null);
+                        player.sendMessage(ChatColor.AQUA+"---------------------");
                         player.sendMessage(ChatColor.RED+"There are no tools in the hopper! So digger was paused!");
+                        player.sendMessage(ChatColor.AQUA+"---------------------");
+                        DataHandler.save_string(dataHandler.namespaceKey_Task_Last_Message,data,"There are no tools in the hopper! So digger was paused!");
                         return;
                     }
                     ticks+=digger.getConfig().getInt("Time_added")*20;
                 }
                 DataHandler.save_int(dataHandler.namespaceKey_Task_Next_Time,data,ticks);
+                DataHandler.save_string(dataHandler.namespaceKey_Task_Last_Message,data,"");
                 run_t(player,ticks);
             }
         }.runTaskLater(plugin, time).getTaskId();
