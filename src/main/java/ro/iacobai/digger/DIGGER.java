@@ -10,6 +10,7 @@ import ro.iacobai.digger.commands.CommandManager;
 import ro.iacobai.digger.commands.TabComplete;
 
 import ro.iacobai.digger.data.DataHandler;
+import ro.iacobai.digger.events.SelectionScreenEvent;
 import ro.iacobai.digger.items.ItemManager;
 import ro.iacobai.digger.player.OnJoin;
 import ro.iacobai.digger.player.OnLeave;
@@ -33,6 +34,7 @@ public final class DIGGER extends JavaPlugin implements Listener {
             getServer().getPluginManager().registerEvents(new ItemManager(),this);
             getServer().getPluginManager().registerEvents(new OnJoin(),this);
             getServer().getPluginManager().registerEvents(new OnLeave(),this);
+            getServer().getPluginManager().registerEvents(new SelectionScreenEvent(),this);
             for(Player player : Bukkit.getOnlinePlayers()){
                 DataHandler dataHandler = new DataHandler();
                 PersistentDataContainer data = player.getPersistentDataContainer();

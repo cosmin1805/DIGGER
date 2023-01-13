@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import org.bukkit.persistence.PersistentDataContainer;
-import org.jetbrains.annotations.NotNull;
 import ro.iacobai.digger.DIGGER;
 import ro.iacobai.digger.commands.subcommands.*;
 import ro.iacobai.digger.data.DataHandler;
@@ -30,9 +29,10 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new ResumeCommand());
         subcommands.add(new PauseCommand());
         subcommands.add(new BreakCommand());
+        subcommands.add(new GuiCommand());
     }
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             Player p = (Player) sender;
             PersistentDataContainer data = p.getPersistentDataContainer();

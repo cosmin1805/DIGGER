@@ -6,7 +6,7 @@
 
     <groupId>ro.iacobai</groupId>
     <artifactId>DIGGER</artifactId>
-    <version>2.0-SNAPSHOT</version>
+    <version>3.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>DIGGER</name>
@@ -48,7 +48,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <outputDirectory>C:\Users\Cosmin Andrei\Desktop\1.19.2-paper-dev\plugins</outputDirectory>
+                    <outputDirectory>C:\Users\Cosmin Andrei\Desktop\JAVA-DEV\1.19.2-paper-dev\plugins</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
