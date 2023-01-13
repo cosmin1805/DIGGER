@@ -40,7 +40,6 @@ public class ConfirmScreenEvent implements Listener {
                 if (e.getCurrentItem().getType() == Material.GREEN_STAINED_GLASS_PANE) {
                     if (DataHandler.get_bool(dataHandler.namespaceKey_Running, data) == 1) {
                         Bukkit.getScheduler().cancelTask(DataHandler.get_int(dataHandler.namespaceKey_Task_Id, data));
-                        DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm, data, player, null);
                         DataHandler.change_bool(dataHandler.namespaceKey_Running, data, player, null);
                         if (DataHandler.get_bool(dataHandler.namespaceKey_Pause, data) == 1) {
                             DataHandler.change_bool(dataHandler.namespaceKey_Pause, data, player, null);
@@ -51,11 +50,8 @@ public class ConfirmScreenEvent implements Listener {
                         DataHandler.change_bool(dataHandler.namespaceKey_Running, data, player, null);
                         DataHandler.save_position(dataHandler.namespacesKey_PosCurrent, data, pos1);
                         digPlace.run_t(player, digger.getConfig().getInt("Time") * 20);
-                        DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm, data, player, null);
                         DataHandler.save_int(dataHandler.namespaceKey_Task_Next_Time, data, digger.getConfig().getInt("Time") * 20);
                     }
-                } else if (e.getCurrentItem().getType() == Material.RED_STAINED_GLASS_PANE) {
-                    DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm, data, player, null);
                 }
             }
             SelectionScreen gui = new SelectionScreen(player);
