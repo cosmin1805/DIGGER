@@ -31,6 +31,9 @@ public class ParticleCommand extends SubCommand {
         if(DataHandler.get_bool(dataHandler.namespaceKey_Highlight,data)==0){
             Particles particles = new Particles();
             particles.run_t(player);
+            player.sendMessage(ChatColor.AQUA+"---------------------");
+            player.sendMessage(ChatColor.GREEN+"The particle highlight has started!");
+            player.sendMessage(ChatColor.AQUA+"---------------------");
             DataHandler.change_bool(dataHandler.namespaceKey_Highlight,data,player,null);
         }
         else {

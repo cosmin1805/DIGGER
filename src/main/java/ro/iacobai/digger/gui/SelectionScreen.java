@@ -85,9 +85,9 @@ public class SelectionScreen implements InventoryHolder {
             //PAUSED OR NOT
             cond = DataHandler.get_bool(dataHandler.namespaceKey_Pause,data);
             if(cond == 1){
-                return createItem(ChatColor.GREEN+"NOT PAUSED",Material.MAGENTA_GLAZED_TERRACOTTA,null);
-            }else {
                 return createItem(ChatColor.RED+"PAUSED",Material.BARRIER,null);
+            }else {
+                return createItem(ChatColor.GREEN+"NOT PAUSED",Material.MAGENTA_GLAZED_TERRACOTTA,null);
             }
         }
         else if (position == 19) {

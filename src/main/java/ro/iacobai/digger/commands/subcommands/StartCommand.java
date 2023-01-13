@@ -49,6 +49,5 @@ public class StartCommand extends SubCommand {
         player.sendMessage("Confirm this with /digger confirm!");
         player.sendMessage(ChatColor.AQUA+"---------------------");
         DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
-
     }
 }

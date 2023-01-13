@@ -13,9 +13,6 @@ import java.util.List;
 public class Particles {
     DataHandler dataHandler = new DataHandler();
     public void run_t(Player player) {
-        player.sendMessage(ChatColor.AQUA+"---------------------");
-        player.sendMessage(ChatColor.GREEN+"The particle highlight has started!");
-        player.sendMessage(ChatColor.AQUA+"---------------------");
         PersistentDataContainer data = player.getPersistentDataContainer();
         Location pos1 = DataHandler.get_position(dataHandler.namespaceKey_Pos1,data);
         Location pos2 = DataHandler.get_position(dataHandler.namespaceKey_Pos2,data);
