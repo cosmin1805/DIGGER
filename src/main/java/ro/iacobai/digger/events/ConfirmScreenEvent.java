@@ -3,10 +3,12 @@ package ro.iacobai.digger.events;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Hopper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.persistence.PersistentDataContainer;
 import ro.iacobai.digger.DIGGER;
@@ -57,6 +59,18 @@ public class ConfirmScreenEvent implements Listener {
             }
             SelectionScreen gui = new SelectionScreen(player);
             player.openInventory(gui.getInventory());
+        }
+    }
+    @EventHandler
+    public  void leave(InventoryCloseEvent event){
+        Player player = (Player)event.getPlayer();
+        PersistentDataContainer data = player.getPersistentDataContainer();
+        Inventory inv = event.getInventory();
+        if (inv == null) {
+            return;
+        }
+        if (inv.getHolder() instanceof ConfirmScreen) {
+            DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm, data, player, null);
         }
     }
 }
