@@ -68,7 +68,9 @@ public class ConfirmScreenEvent implements Listener {
             return;
         }
         if (inv.getHolder() instanceof ConfirmScreen) {
-            DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm, data, player, null);
+            if(DataHandler.get_bool(dataHandler.namespaceKey_Await_Confirm,data) == 1){
+                DataHandler.change_bool(dataHandler.namespaceKey_Await_Confirm,data,player,null);
+            }
         }
     }
 }
