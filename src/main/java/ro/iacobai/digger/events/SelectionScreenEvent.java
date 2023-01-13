@@ -47,7 +47,7 @@ public class SelectionScreenEvent implements Listener {
                 }
                 else if (DataHandler.get_bool(dataHandler.namespaceKey_Running,data)==0){
                     player.sendMessage(ChatColor.AQUA+"---------------------");
-                    player.sendMessage(ChatColor.RED+"Nothing to resume!");
+                    player.sendMessage(ChatColor.RED+"Nothing to pause!");
                     player.sendMessage(ChatColor.AQUA+"---------------------");
                 }
                 inv.setItem(e.getSlot(), selectionScreen.getItem(e.getSlot(), data));

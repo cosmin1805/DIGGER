@@ -3,7 +3,6 @@ package ro.iacobai.digger.events;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Hopper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,11 +15,13 @@ import ro.iacobai.digger.data.DataHandler;
 import ro.iacobai.digger.gui.ConfirmScreen;
 import ro.iacobai.digger.gui.SelectionScreen;
 import ro.iacobai.digger.tasks.DigPlace;
+import ro.iacobai.digger.tasks.SelectionScreenRefresh;
 
 public class ConfirmScreenEvent implements Listener {
     DataHandler dataHandler = new DataHandler();
     DigPlace digPlace = new DigPlace();
     DIGGER digger = DIGGER.getPlugin();
+    SelectionScreenRefresh selectionScreenRefresh = new SelectionScreenRefresh();
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
@@ -59,6 +60,7 @@ public class ConfirmScreenEvent implements Listener {
             }
             SelectionScreen gui = new SelectionScreen(player);
             player.openInventory(gui.getInventory());
+            selectionScreenRefresh.run_t(player);
         }
     }
     @EventHandler
